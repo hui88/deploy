@@ -1,0 +1,14 @@
+<%# title "Recipes" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for recipe in @recipes %>
+    <tr>
+      <td><%=h recipe.name %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Recipe", new_recipe_path %></p>

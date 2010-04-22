@@ -1,0 +1,2568 @@
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateProducts (20100419123337)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "image_url" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100419123337')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("products")[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-19 20:33:57) [GET]
+
+ActionController::RoutingError (No route matches "/books" with {:method=>:get}):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:34:04) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 46ms (View: 39, DB: 0) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 20:34:08) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 18ms (View: 11, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2010-04-19 20:34:57) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"Wz6UXhEX+ntNPNkq+p0+LNg75pZtEHaeRarPP6qV150=", "product"=>{"image_url"=>"/rails.jpg", "title"=>"ruby on rails ", "description"=>"use rails to work!"}}
+  [4;35;1mProduct Create (0.4ms)[0m   [0mINSERT INTO "products" ("created_at", "title", "image_url", "updated_at", "description") VALUES('2010-04-19 12:34:57', 'ruby on rails ', '/rails.jpg', '2010-04-19 12:34:57', 'use rails to work!')[0m
+Redirected to http://localhost:3000/products/1
+Completed in 20ms (DB: 0) | 302 Found [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:34:57) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 15ms (View: 8, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:35:01) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 14ms (View: 8, DB: 1) | 200 OK [http://localhost/products]
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateProducts (20100419123337)
+Migrating to AddPriceToProduct (20100419123628)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mALTER TABLE "products" ADD "price" decimal(8,2) DEFAULT 0[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100419123628')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("products")[0m
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:03) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 65ms (View: 59, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:05) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 16ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:07) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:08) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:09) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 16ms (View: 10, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:09) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 16ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:09) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 63ms (View: 56, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:41:48) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 82ms (View: 34, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:42:05) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 22ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:42:28) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 81ms (View: 34, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:42:33) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:42:34) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:42:36) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:42:36) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:42:36) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:51:21) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 86ms (View: 35, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:51:34) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 15ms (View: 7, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:54:59) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 4, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:00) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:01) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:01) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:02) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:02) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 61ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:02) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:03) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:03) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 20:55:03) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:55:09) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 20ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 20:59:01) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 19ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2010-04-19 21:33:18) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/edit
+Completed in 70ms (View: 63, DB: 0) | 200 OK [http://localhost/products/1/edit]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:33:21) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 21:33:22) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:33:26) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:39:06) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:39:08) [GET]
+  [4;35;1mProduct Load (2.2ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 19ms (View: 9, DB: 2) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:39:08) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:39:08) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 16ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 21:39:11) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 15ms (View: 7, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:39:13) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2010-04-19 21:39:14) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/edit
+Completed in 20ms (View: 13, DB: 0) | 200 OK [http://localhost/products/1/edit]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:39:16) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 21:39:24) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 18ms (View: 12, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:39:26) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 65ms (View: 59, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 21:44:44) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 18ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2010-04-19 21:45:57) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/edit
+Completed in 16ms (View: 9, DB: 0) | 200 OK [http://localhost/products/1/edit]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 21:46:13) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 21:47:31) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 18ms (View: 11, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 21:47:47) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 17ms (View: 11, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 21:48:17) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 37ms (View: 30, DB: 1) | 200 OK [http://localhost/products/]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mSQL (22.8ms)[0m   [0;1mSELECT count(*) AS count_all FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:04:46) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+
+ActionView::TemplateError (undefined method `name' for #<Product:0xb6cb5870>) on line #10 of app/views/products/index.html.erb:
+7:     <th>Image url</th>
+8:     <th>Price</th>    
+9:   </tr>
+10: <h1><%= @first.name %></h1>
+11: <% @products.each do |product| %>
+12:   <tr>
+13:     <td><%=h product.title %></td>
+
+    app/views/products/index.html.erb:10
+    app/controllers/products_controller.rb:7:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (41.6ms)
+Rendered rescues/_request_and_response (8.8ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:04:53) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 20ms (View: 14, DB: 1) | 200 OK [http://localhost/products/]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:25:20) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (32.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:25:21) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:25:21) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:25:22) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (31.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:08) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:08) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (85.4ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:09) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:10) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:10) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (92.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:10) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:10) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:11) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (32.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:11) [GET]
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:11) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:11) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:11) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:12) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (86.3ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:12) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:12) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:12) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (91.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:12) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:12) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:13) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (31.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:13) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:13) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:13) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:28:13) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:30:18) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (97.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:33:00) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (31.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:33:01) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:33:01) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (86.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:33:01) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:33:01) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 22:35:24) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:35:28) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:35:28) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (37.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:35:29) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (85.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:35:29) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  app/models/product.rb:7:in `price_more_than_100'
+  app/controllers/products_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (30.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:37:07) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+
+ActionView::TemplateError (undefined method `than' for #<ActionView::Base:0xb6a41698>) on line #24 of app/views/products/index.html.erb:
+21: <% end %>
+22: </table>
+23: 
+24: <h1><%= products which price mroe than 100 %></h1>
+25: 
+26: <h1><%= products which price atless 100 %></h1>
+27: <br />
+
+    app/views/products/index.html.erb:24
+    app/controllers/products_controller.rb:9:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (96.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:38:14) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+
+ActionView::TemplateError (undefined method `f' for #<ActionView::Base:0xb6be8794>) on line #27 of app/views/products/index.html.erb:
+24: 
+25: <h1><%= "products which price atless 100" %></h1>
+26: <br />
+27: <%f@product_less.each do |product| %>
+28:   <tr>
+29:     <td><%=h product.title %></td>
+30:     <td><%=h product.description %></td>
+
+    app/views/products/index.html.erb:27
+    app/controllers/products_controller.rb:9:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:38:52) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 22ms (View: 14, DB: 1) | 200 OK [http://localhost/products/]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:39:25) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 18ms (View: 9, DB: 1) | 200 OK [http://localhost/products/]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:39:26) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 17ms (View: 9, DB: 1) | 200 OK [http://localhost/products/]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:40:09) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 22ms (View: 14, DB: 1) | 200 OK [http://localhost/products/]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:44:59) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 23ms (View: 14, DB: 1) | 200 OK [http://localhost/products/]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 22:45:16) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 19ms (View: 11, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2010-04-19 22:45:22) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"Wz6UXhEX+ntNPNkq+p0+LNg75pZtEHaeRarPP6qV150=", "product"=>{"price"=>"123", "image_url"=>"daf", "title"=>"ad", "description"=>"af"}}
+  [4;36;1mProduct Create (0.4ms)[0m   [0;1mINSERT INTO "products" ("price", "created_at", "title", "image_url", "updated_at", "description") VALUES(123.0, '2010-04-19 14:45:22', 'ad', 'daf', '2010-04-19 14:45:22', 'af')[0m
+Redirected to http://localhost:3000/products/2
+Completed in 18ms (DB: 0) | 302 Found [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-19 22:45:22) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 2) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/products/2]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 22:45:26) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 22ms (View: 14, DB: 2) | 200 OK [http://localhost/products]
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateProducts (20100419123337)
+Migrating to AddPriceToProduct (20100419123628)
+Migrating to CreateUsers (20100419145429)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "age" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100419145429')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("products")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-19 22:56:02) [GET]
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 20ms (View: 14, DB: 0) | 200 OK [http://localhost/users]
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateProducts (20100419123337)
+Migrating to AddPriceToProduct (20100419123628)
+Migrating to CreateUsers (20100419145429)
+Migrating to ProductAddUserId (20100419145838)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mALTER TABLE "products" ADD "user_id" integer[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100419145838')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("products")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-19 23:03:54) [GET]
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 50ms (View: 1, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:04:01) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 72ms (View: 64, DB: 2) | 200 OK [http://localhost/products]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+  [4;35;1mUser Create (0.4ms)[0m   [0mINSERT INTO "users" ("name", "created_at", "updated_at", "age") VALUES('bin', '2010-04-19 15:07:04', '2010-04-19 15:07:04', 18)[0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+  [4;36;1mProduct Update (0.3ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2010-04-19 15:09:08', "user_id" = 1 WHERE "id" = 1[0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" LIMIT 1[0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 2) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."title" = 'ad') LIMIT 1[0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."title" = 'ad' AND "products"."image_url" = 'daf') LIMIT 1[0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."title" = 'ad' AND "products"."image_url" = 'daf') [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" LIMIT 1[0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 2) [0m
+  [4;36;1mProduct Update (0.3ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2010-04-19 15:13:44', "user_id" = 1 WHERE "id" = 2[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" LIMIT 1[0m
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" LIMIT 1[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" LIMIT 1[0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" LIMIT 1[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" LIMIT 1[0m
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:20:18) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 23ms (View: 14, DB: 2) | 200 OK [http://localhost/products]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-19 23:20:23) [GET]
+
+ActionController::RoutingError (No route matches "/users%5C" with {:method=>:get}):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-19 23:20:26) [GET]
+
+ActionController::RoutingError (No route matches "/users%5C" with {:method=>:get}):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-19 23:20:28) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 23ms (View: 16, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 23:20:32) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 23:20:37) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 64ms (View: 57, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-19 23:20:42) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 16ms (View: 9, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-19 23:24:05) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-19 23:31:42) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-19 23:31:45) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 65ms (View: 56, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-19 23:31:55) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 19ms (View: 3, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:32:10) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 23ms (View: 14, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:32:34) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 23ms (View: 14, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-19 23:32:46) [GET]
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-19 23:32:50) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 58ms (View: 3, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:32:57) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 23ms (View: 14, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:41:07) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."user_id" = '1') LIMIT 1[0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+
+ActionView::TemplateError (undefined method `each' for #<Product:0xb6afe4dc>) on line #68 of app/views/products/index.html.erb:
+65:     <th>Image url</th>
+66:     <th>Price</th>    
+67:   </tr>
+68: <% @user_products.each do |product| %>
+69:   <tr>
+70:     <td><%=h product.title %></td>
+71:     <td><%=h product.description %></td>
+
+    app/views/products/index.html.erb:68
+    app/controllers/products_controller.rb:10:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (97.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:42:58) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."user_id" = '1') [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 25ms (View: 13, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:50:43) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.title) on line #10 of app/views/products/index.html.erb:
+7:     <th>Image url</th>
+8:     <th>Price</th>    
+9:   </tr>
+10: <h1><%= @first.title %></h1>
+11: <% @products.each do |product| %>
+12:   <tr>
+13:     <td><%=h product.title %></td>
+
+    app/views/products/index.html.erb:10
+    app/controllers/products_controller.rb:15:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (92.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-19 23:51:01) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (7.4ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 44ms (View: 23, DB: 9) | 200 OK [http://localhost/users/1/products]
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" LIMIT 1[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" LIMIT 1[0m
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-22 21:47:53) [GET]
+
+ActionController::RoutingError (No route matches "/user" with {:method=>:get}):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-22 21:47:57) [GET]
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 78ms (View: 57, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-22 21:48:38) [GET]
+
+ActionController::RoutingError (No route matches "/usrs" with {:method=>:get}):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-22 21:49:35) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://localhost/users/]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-22 21:49:55) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 27ms (View: 19, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-22 21:50:03) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 15ms (View: 7, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 21:50:26) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 15ms (View: 7, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 21:50:32) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 35ms (View: 21, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-22 21:50:45) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 65ms (View: 58, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 21:52:44) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 32ms (View: 15, DB: 2) | 200 OK [http://localhost/users/1/products]
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateProducts (20100419123337)
+Migrating to AddPriceToProduct (20100419123628)
+Migrating to CreateUsers (20100419145429)
+Migrating to ProductAddUserId (20100419145838)
+Migrating to CreateRecipes (20100422135610)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE TABLE "recipes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100422135610')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("products")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("recipes")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("users")[0m
+
+
+Processing RecipesController#index (for 127.0.0.1 at 2010-04-22 21:56:39) [GET]
+  [4;35;1mRecipe Load (0.4ms)[0m   [0mSELECT * FROM "recipes" [0m
+Rendering recipes/index
+
+ActionView::TemplateError (undefined method `title' for #<ActionView::Base:0xb6fdb0b8>) on line #1 of app/views/recipes/index.html.erb:
+1: <% title "Recipes" %>
+2: 
+3: <table>
+4:   <tr>
+
+    app/views/recipes/index.html.erb:1
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (38.3ms)
+Rendered rescues/_request_and_response (1.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RecipesController#index (for 127.0.0.1 at 2010-04-22 21:57:21) [GET]
+  [4;36;1mRecipe Load (0.4ms)[0m   [0;1mSELECT * FROM "recipes" [0m
+Rendering recipes/index
+Completed in 11ms (View: 5, DB: 0) | 200 OK [http://localhost/recipes]
+
+
+Processing RecipesController#new (for 127.0.0.1 at 2010-04-22 21:57:24) [GET]
+Rendering recipes/new
+
+ActionView::TemplateError (undefined method `title' for #<ActionView::Base:0xb69a1a6c>) on line #1 of app/views/recipes/new.html.erb:
+1: <% title "New Recipe" %>
+2: 
+3: <% form_for @recipe do |f| %>
+4:   <%= f.error_messages %>
+
+    app/views/recipes/new.html.erb:1
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (88.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 21:58:19) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.8ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 32ms (View: 18, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 21:58:20) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 30ms (View: 15, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 21:58:21) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.8ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 76ms (View: 61, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:00:13) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (1.0ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+
+NoMethodError (undefined method `application' for #<ProductsController:0xb6bb35bc>):
+  app/controllers/products_controller.rb:16:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (39.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:00:24) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 89ms (View: 72, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:01:54) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 33ms (View: 16, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:01:59) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 31ms (View: 16, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:02:00) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 75ms (View: 60, DB: 3) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:02:32) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 31ms (View: 15, DB: 3) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:02:51) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 32ms (View: 17, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:02:52) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 31ms (View: 15, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:03:24) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 30ms (View: 15, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-22 22:03:27) [GET]
+Rendering template within layouts/application
+Rendering products/new
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-04-22 22:03:31) [GET]
+Rendering template within layouts/application
+Rendering products/new
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:04:13) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 75ms (View: 60, DB: 3) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:05:15) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 31ms (View: 16, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:07:18) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (1.1ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 38ms (View: 22, DB: 3) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:07:57) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (36.8ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 76ms (View: 25, DB: 39) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:07:58) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 31ms (View: 15, DB: 3) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:07:59) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 30ms (View: 15, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:08:03) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 34ms (View: 20, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:09:03) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (1.1ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 38ms (View: 22, DB: 3) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-22 22:09:06) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/show
+Completed in 20ms (View: 12, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:09:24) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 30ms (View: 15, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-22 22:09:26) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/show
+Completed in 71ms (View: 56, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:09:50) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 41ms (View: 26, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:09:50) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 31ms (View: 15, DB: 3) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2010-04-22 22:09:52) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/show
+Completed in 15ms (View: 7, DB: 0) | 200 OK [http://localhost/products/1]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2010-04-22 22:09:54) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/edit
+Completed in 22ms (View: 14, DB: 0) | 200 OK [http://localhost/products/1/edit]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:11:41) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 16ms (View: 8, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:13:06) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 16ms (View: 8, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:14:15) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 13ms (View: 3, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:14:21) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 16ms (View: 8, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:14:21) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 12ms (View: 3, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-04-22 22:14:25) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Completed in 19ms (View: 11, DB: 0) | 200 OK [http://localhost/users/1/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-22 22:14:26) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:14:41) [GET]
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  app/controllers/products_controller.rb:11:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (78.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:15:05) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  app/controllers/products_controller.rb:11:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (29.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:15:24) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;35;1mProduct Load (0.7ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 31ms (View: 15, DB: 2) | 200 OK [http://localhost/users/1/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:17:44) [GET]
+  [4;35;1mProduct Load (0.8ms)[0m   [0mSELECT * FROM "products" [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price <= 100) [0m
+Rendering template within layouts/application
+Rendering products/index
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #67 of app/views/products/index.html.erb:
+64:     <th>Image url</th>
+65:     <th>Price</th>    
+66:   </tr>
+67: <% @user_products.each do |product| %>
+68:   <tr>
+69:     <td><%=h product.title %></td>
+70:     <td><%=h product.description %></td>
+
+    app/views/products/index.html.erb:67
+    app/controllers/products_controller.rb:16:in `index'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (41.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:19:13) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+Rendering template within layouts/application
+Rendering products/index
+Completed in 72ms (View: 64, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-22 22:22:29) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Completed in 23ms (View: 9, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:22:34) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-04-22 22:22:56) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Completed in 20ms (View: 13, DB: 1) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:22:58) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-04-22 22:23:09) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Completed in 17ms (View: 8, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-04-22 22:23:16) [GET]
+  Parameters: {"user_id"=>"1"}
+  [4;36;1mProduct Load (0.9ms)[0m   [0;1mSELECT * FROM "products" [0m
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" WHERE (price >= 100) [0m
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" WHERE (price <= 100) [0m
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products".user_id = 1) [0m
+Completed in 30ms (View: 15, DB: 3) | 200 OK [http://localhost/users/1/products]

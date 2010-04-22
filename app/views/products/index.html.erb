@@ -1,0 +1,76 @@
+<h1>Listing products</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image url</th>
+    <th>Price</th>    
+  </tr>
+<% @products.each do |product| %>
+  <tr>
+    <td><%=h product.title %></td>
+    <td><%=h product.description %></td>
+    <td><%=h product.image_url %></td>
+    <td><%=h product.price %></td>    
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<h1><%= "products which price atless 100" %></h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image url</th>
+    <th>Price</th>    
+  </tr>
+<% @product_less.each do |product| %>
+  <tr>
+    <td><%=h product.title %></td>
+    <td><%=h product.description %></td>
+    <td><%=h product.image_url %></td>
+    <td><%=h product.price %></td>    
+  </tr>
+<% end %>
+</table>
+
+<h1><%= "products which price more than 100" %></h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image url</th>
+    <th>Price</th>    
+  </tr>
+<% @product_more.each do |product| %>
+  <tr>
+    <td><%=h product.title %></td>
+    <td><%=h product.description %></td>
+    <td><%=h product.image_url %></td>
+    <td><%=h product.price %></td>    
+  </tr>
+<% end %>
+</table>
+
+<h1><%= "用户的货品" %></h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image url</th>
+    <th>Price</th>    
+  </tr>
+<% @user_products.each do |product| %>
+  <tr>
+    <td><%=h product.title %></td>
+    <td><%=h product.description %></td>
+    <td><%=h product.image_url %></td>
+    <td><%=h product.price %></td>    
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New product', new_product_path %>
