@@ -1,0 +1,26 @@
+<h1>The Product</h1>
+<p>
+  <b>Title:</b>
+  <%=h @product.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @product.description %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%=h @product.image_url %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%=h @product.price %>
+</p>
+<%= button_to 'Add to Cart',:action => "add_to_cart",:id => @product.id%>
+<%= button_to 'Back',:action => "index"%>
+<%= link_to 'Shop',user_products_path(@product.user_id)%>
+
+
+

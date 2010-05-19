@@ -1,0 +1,262 @@
+<div style="margin-top: 0px;" class="content">
+    <div widget_type="area" area="bottom_left" class="left">
+        
+<div class="widget" widget_type="widget" name="recommended_store" id="_widget_717">
+<div class="module_common">
+    <h2><b title="SHOPS店辅推荐" class="shops"></b></h2>
+    <div class="wrap">
+        <div class="wrap_child">
+            <ul class="particular">
+              <% User.all.each do |user| %>
+                <li>
+                  <div class="pic"><a href="./?771824"><img width="65" height="65" src="data/files/store_771824/other/store_logo.jpg"></a></div>
+                    <dl>
+                      <dt><a title="" href="./?771824">天虹商场</a></dt>
+                      <dd>店主:<%= user.name %></dd>
+                      <dd>商品:<%= user.products.size%></dd>
+                      <dd>QQ:<%= user.QQ%> </dd>
+                   </dl>
+                </li>
+              <% end %>
+                  
+           </ul>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+
+    <div area="bottom_right" widget_type="area" class="right">
+        
+<div class="widget" widget_type="widget" name="gcategory_list" id="_widget_364">
+<div class="module_common">
+    <h2><b title="CATEGORY商品分类" class="category"></b></h2>
+    <div class="wrap">
+        <div class="wrap_child">
+            <div style="margin-top: 2px;" class="assort">
+                <div class="assort_wrap">
+                  <% i = 1%>
+                  <% Type.all.each do |type|%>
+                    <dl style="margin-bottom: 8px;">
+                      <dt style="line-height: 30px; font-size: 16px;" class="bg_color<%= i %>">
+                        <a href="index.php?app=search&amp;cate_id=3">
+                          <%= type.name%>
+                        </a>
+                      </dt>
+                    </dl>  
+                    <% i += 1 ;i = 1 if i == 6 %>
+                  <%end%>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="widget" widget_type="widget" name="goods_module_2" id="_widget_199">
+<div style="background: none repeat scroll 0% 0% rgb(232, 181, 229);" class="module_recommend">
+    <h2>
+        <b><%= Type.find(1).name%></b>
+    </h2>
+    <div class="wrap">
+        <div class="pic">
+          <% Type.find(1).products.each do |product|%>
+             <img width="210" height="280" src="<%= product.image.url%>">
+          <%end%>   
+        </div>
+        <div class="portrait">
+            <ul class="list_pic">
+             <% Type.find(1).products.each do |product|%>
+               <li>
+                 <p>
+                   <a target="_blank" href="<%  %>">
+                     <img width="78" height="78" src="<%= product.image.url%>">
+                   </a>  
+                 </p>
+                 <h3><%= link_to "#{product.title}"%><span>￥<%= product.price%></span></h3>
+               </li>
+             <% end %>
+            </ul>
+            
+            <div class="list_side">
+                <h2><b>最新</b></h2>
+                <ul class="list_text">
+                  <% Type.find(1).products.each do |product|%>
+                     <li>
+                       <%= link_to "#{product.title}"%>
+                     </li>
+                  <%end%>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="widget" widget_type="widget" name="goods_module_1" id="_widget_729">
+<div style="background: none repeat scroll 0% 0% rgb(163, 201, 238);" class="module_recommend">
+    <h2>
+      <b><%= Type.find(2).name%></b>
+    </h2>
+    <div class="wrap">
+        <div class="pic">
+          <% Type.find(2).products.each do |product|%>
+             <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">
+               <img width="210" height="280" src="<%= product.image.url%>">
+             </a>  
+          <%end%>   
+        </div>
+        <div class="diatropism">
+            <ul class="list_pic">
+              <% Type.find(2).products.each do |product|%>
+                <li>
+                  <p>
+                    <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">                    
+                      <img width="100" height="100" src="<%= product.image.url%>">
+                    </a>  
+                  </p>
+                  <h3>
+                    <%= link_to "#{product.title}"%><span>￥<%= product.price%></span>
+                  </h3>
+                </li>
+              <% end %>
+            </ul>
+
+            <ul class="list_text">
+              <% Type.find(2).products.each do |product|%>
+                <li>
+                 <%= link_to "#{product.title}"%> 
+                </li>
+              <% end %>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="widget" widget_type="widget" name="goods_module_2" id="_widget_613">
+<div style="background: none repeat scroll 0% 0% rgb(167, 216, 200);" class="module_recommend">
+    <h2>
+        <b><%= Type.find(3).name%></b>
+    </h2>
+    <div class="wrap">
+        <div class="pic">
+          <a target="_blank" href="http://buy.xizi.com/index.php?app=goods&amp;id=17552">
+            <img width="210" height="280" src="data/files/mall/template/201005100617429514.jpg">
+          </a>
+        </div>
+        <div class="portrait">
+            <ul class="list_pic">
+            <% Type.find(3).products.each do |product|%>
+               <li>
+                 <p>
+                   <a target="_blak" href="<% %>">
+                     <img width="78" height="78" src="<%= product.image.url%>">
+                   </a>  
+                 </p>
+                 <h3><%= link_to "#{product.title}"%><span>￥<%= product.price%></span></h3>
+               </li>
+             <% end %>
+             </ul>
+            
+            <div class="list_side">
+                <h2><b>最新</b></h2>
+                <ul class="list_text">
+                  <% Type.find(3).products.each do |product|%>
+                     <li>
+                       <%= link_to "#{product.title}"%>
+                     </li>
+                  <%end%>
+                  <li>
+                    <a title="沙发床" target="_blank" href="index.php?app=goods&amp;id=18604">
+                      沙发床
+                    </a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="widget" widget_type="widget" name="goods_module_1" id="_widget_825">
+<div style="background: none repeat scroll 0% 0% rgb(236, 184, 188);" class="module_recommend">
+    <h2>
+        <b><%= Type.find(4).name%></b>
+    </h2>
+    <div class="wrap">
+        <div class="pic">
+          <% Type.find(4).products.each do |product|%>
+             <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">
+               <img width="210" height="280" src="<%= product.image.url%>">
+             </a>  
+          <%end%>  
+        <div class="diatropism">
+            <ul class="list_pic">
+              <% Type.find(4).products.each do |product|%>
+                <li>
+                  <p>
+                    <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">                    
+                      <img width="100" height="100" src="<%= product.image.url%>">
+                    </a>  
+                  </p>
+                  <h3>
+                    <%= link_to "#{product.title}"%><span>￥<%= product.price%></span>
+                  </h3>
+                </li>
+              <% end %>
+            </ul>
+
+            <ul class="list_text">
+               <% Type.find(4).products.each do |product|%>
+                <li>
+                 <%= link_to "#{product.title}"%> 
+                </li>
+               <% end %>
+                                <li><a title="沙发床" target="_blank" href="index.php?app=goods&amp;id=18604">沙发床</a></li>
+                                <li><a title="MOTIVI  手提包/斜挎包 两用 预订款" target="_blank" href="index.php?app=goods&amp;id=18603">MOTIVI  手提包/斜挎包 两用 预订款</a></li>
+                                <li><a title="土黄柳丁手提包/单肩斜挎 两用两色 预订款" target="_blank" href="index.php?app=goods&amp;id=18602">土黄柳丁手提包/单肩斜挎 两用两色 预订款</a></li>
+                                <li><a title="黑色柳丁手提包/单肩斜挎 两用两色 预订款" target="_blank" href="index.php?app=goods&amp;id=18601">黑色柳丁手提包/单肩斜挎 两用两色 预订款</a></li>
+                                <li><a title="欧美新款靴帮镂空鱼嘴高跟凉鞋" target="_blank" href="index.php?app=goods&amp;id=18600">欧美新款靴帮镂空鱼嘴高跟凉鞋</a></li>
+                                <li><a title="夜店首选亮跟性感鱼嘴凉鞋女鞋" target="_blank" href="index.php?app=goods&amp;id=18599">夜店首选亮跟性感鱼嘴凉鞋女鞋</a></li>
+                                <li><a title="高档军绿色连体裤  预订款" target="_blank" href="index.php?app=goods&amp;id=18598">高档军绿色连体裤  预订款</a></li>
+                                <li><a title="※华华卡通花束※ 12只米奇米妮 迪士尼公仔花 全国速递 #947" target="_blank" href="index.php?app=goods&amp;id=18597">※华华卡通花束※ 12只米奇米妮 迪士尼公仔花 全国速递 #947</a></li>
+                            </ul>
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+<div style="color: rgb(102, 102, 102);" id="footer">
+  <p>
+    <a href="/store">首页</a>
+  </p>
+</div>
+
+
+
+
+
+<h1>Your Pragmatic Catalog</h1>
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image url</th>
+    <th>Price</th>
+    <th>Action</th>
+ </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= image_tag product.image.url(:small) %></td>
+    <td><%=h product.title %></td>
+    <td><%=h product.description %></td>
+    <td><img class="list-image" src="<%=h product.image_url %>"/></td>
+    <td><%=h product.price %></td>    
+    <td><%= link_to 'show',:action =>"show",:id =>product.id  %></td> 
+ </tr>
+ 
+<% end %>

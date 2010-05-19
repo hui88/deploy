@@ -1,17 +1,32 @@
 <h1>Listing users</h1>
+<div style="float:right" >
+  <% form_for(User.new,:url=>{:action => :search}) do |f| %>
+      <%= f.text_field :name%>
+      <%= f.submit 'Search' %>
+  <% end %>
+</div>
 
 <table>
   <tr>
     <th>Name</th>
-    <th>Age</th>
+    <th>Sex</th>
+    <th>Email</th>
+    <th>QQ</th>
+    <th>Phone</th>
+    <th>Address</th>
+
   </tr>
 
 <% @users.each do |user| %>
   <tr>
     <td><%=h user.name %></td>
-    <td><%=h user.age %></td>
+    <td><%=h user.sex %></td>
+    <td><%=h user.email%></td>
+    <td><%=h user.QQ%></td>
+    <td><%=h user.phone%></td>
+    <td><%=h user.address%></td>
     <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %> </td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

@@ -1,12 +1,35 @@
-<h1>Listing products</h1>
+<div id="product-list">
+  <h1>Listing products</h1>
+  
+  <table>
+    <% @user_products.each do |product| %>
+      <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        
+        <td>
+          <%= image_tag product.image.url,:class => 'list-image'%>
+        </td>
+        
+        <td class="list-description">
+          <dl>
+            <dt><%=h product.title %></dt>
+            <dd><%=h truncate(product.description.gsub(/<.*？>/,''),:length => 80) %></dd>
+          </dl>
+        </td>
+        
+        <td class="list-actions">
+          <%= link_to 'Show', user_product_path(product.user_id,product.id) %><br/>
+          <%= link_to 'Edit', edit_user_product_path(product.user_id,product.id) %><br/>
+          <%= link_to 'Destroy', user_product_path(product.user_id,product.id), 
+                      :confirm => 'Are you sure?', 
+                      :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
-<% @user_products.each do |product| %>
-  <tr>
-    <td><%=h product.title %></td>
-    <td><%=h product.description %></td>
-    <td><%=h product.image_url %></td>
-    <td><%=h product.price %></td>    
-  </tr>
-<% end %>
-</table>
-<%= link_to 'New product', new_product_path %>
+          <br />
+
+<%= link_to 'New product', new_user_product_path(params[:user_id],params[:id])%><br/>
+<%= link_to 'back', user_path(@user)%>
+

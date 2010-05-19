@@ -1,0 +1,55 @@
+<br/>
+<br/>
+<div class="content">
+    <div class="module_common">
+        <h2><b title="LOGIN用户登录" class="login"></b></h2>
+        <div class="wrap">
+            <div class="wrap_child">
+                <div class="login_con">
+                    <div class="login_left">
+                        <form id="login_form" action="/users/sign_in" method="post">
+                        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>  
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>邮&nbsp;&nbsp;&nbsp;箱: </td>
+                              <td><input type="text" class="text width5" name="user[email]"></td>
+                            </tr>
+                            <tr>
+                              <td>密&nbsp;&nbsp;&nbsp;码: </td>
+                              <td><input type="password" class="text width5" name="user[password]"></td>
+                            </tr>
+                            <tr class="distance">
+                              <td>
+                              </td>
+                              <td>
+                                <input type="submit" class="enter" value="" name="Submit">                                  
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <input type="hidden" value="http%3A%2F%2Fbuy.xizi.com%2Findex.php" name="ret_url">
+                        </form>
+                    </div>
+
+                    <div class="login_right">
+                        <h4>友情提示:<br>如果您还不是会员，请注册</h4>
+                        <p>注册之后你就可以</p>
+                        <ol>
+                            <li><strong>1.</strong> 保存您的个人资料</li>
+                            <li><strong>2.</strong> 查看店铺商品信息</li>
+                           <!-- <li><strong>3.</strong> 享受会员积分制度</li>-->
+                            <li><strong>3.</strong> 购买您关注的商品</li>
+                        </ol>
+                        <a title="立即注册" class="login_btn" href="/users/sign_up"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="color: rgb(102, 102, 102);" id="footer">
+  <p>
+    <a href="/store">首页</a>
+  </p>
+</div>

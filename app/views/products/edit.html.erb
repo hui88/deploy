@@ -1,6 +1,6 @@
 <h1>Editing product</h1>
 
-<% form_for(@product) do |f| %>
+<% form_for @product , :html => { :multipart => true }do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -15,6 +15,10 @@
     <%= f.label :image_url %><br />
     <%= f.text_field :image_url %>
   </p>
+  <p>
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </p>
   
   <p>
     <%= f.label :price %><br />
@@ -25,5 +29,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Show', user_product_path(@product.user_id,@product.id) %> |
+<%= link_to 'Back', user_products_path(@product.user_id)%>

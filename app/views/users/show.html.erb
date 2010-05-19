@@ -1,14 +1,36 @@
+<h1>User</h1>
 <p>
   <b>Name:</b>
   <%=h @user.name %>
 </p>
-
 <p>
-  <b>Age:</b>
-  <%=h @user.age %>
+  <b>Sex:</b>
+  <%=h @user.sex %>
+</p>
+<p>
+  <b>email:</b>
+  <%=h @user.email %>
 </p>
 
+<p>
+  <b>QQ:</b>
+  <%=h @user.QQ %>
+</p>
+<p>
+  <b>Phone:</b>
+  <%=h @user.phone %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @user.address%>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
 <%= link_to 'Products', user_products_path(@user) %> |
+<%= link_to "My Cart","/store/cart" %> |
+<%= link_to "My Orders",user_orders_path(@user) %> |
+<% if current_user.role == "admin"%>
+  <%= link_to 'Back', users_path %> |
+<% end %>
+

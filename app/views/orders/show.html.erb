@@ -1,0 +1,38 @@
+<h1>Line Items</h1>
+<table>
+  <tr>
+    <td>product</td>
+    <td>quantity</td>
+    <td>total_price</td>
+  </tr>
+<% @line_items.each do |item| %>
+  <tr>
+    <td><%=h Product.find(item.product_id).title %></td>
+    <td><%=h item.quantity %></td>
+    <td><%=h item.total_price %>元</td>
+ </tr>
+<% end %>
+</table>
+<p>
+  <b>User:</b>
+  <%=h @order.user_id %>
+</p>
+
+<p>
+  <b>Total price:</b>
+  <%=h @order.total_price %>
+</p>
+
+<p>
+  <b>Pay type:</b>
+  <%=h @order.pay_type %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%=h @order.message %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', user_orders_path(@order.user_id) %>

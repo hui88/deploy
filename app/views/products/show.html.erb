@@ -1,3 +1,4 @@
+
 <p>
   <b>Title:</b>
   <%=h @product.title %>
@@ -9,14 +10,13 @@
 </p>
 
 <p>
-  <b>Image url:</b>
-  <%=h @product.image_url %>
-</p>
-
-<p>
   <b>Price:</b>
   <%=h @product.price %>
 </p>
+<%= image_tag @product.image.url, :style => "width:50px;height:50px" %>
+<%= image_tag @product.image.url(:small) %>
+<%= image_tag @product.image.url(:big) %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Edit', edit_user_product_path(@product.user_id,@product.id)%>
+<%= link_to 'Back', user_products_path(@product.user_id)%>
+

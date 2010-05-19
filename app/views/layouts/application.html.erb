@@ -3,19 +3,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
-    <%= stylesheet_link_tag 'application' %>
+    <%#= stylesheet_link_tag 'application' , 'depot'%>
+    <%= stylesheet_link_tag 'depots'%>
+    
     <%= yield(:head) %>
+    <%= javascript_include_tag "jquery-1.4.2.js" %>
   </head>
+
   <body>
-    <div id="container">
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%- end -%>
-      
-      <%- if show_title? -%>
-        <h1><%=h yield(:title) %></h1>
-      <%- end -%>
-      
+    <div id="head">
+      <h1 title="西子街"><a href="index.php"><img src="data/files/mall/settings/site_logo.gif" alt="西子街"></a></h1>
+      <div class="menu">
+          <% if user_signed_in? %>
+            您好！<%= current_user.name%>
+            <%= link_to "退出", destroy_user_session_path%>
+            <%= link_to '个人页面',user_path(current_user.id),:class =>"ico"%>
+          <% else %>
+            您好，游客！[<%= link_to "登录", new_user_session_path %>] [<%= link_to "注册",new_user_registration_path %>] 
+          <% end %>
+      </div>
+    </div>
+    <ul id="nav">
+    <div class="nav1"></div>
+    <div class="nav2"></div>
+    <li><a href="index.php" class="link"><span>首页</span></a></li>
+    </ul>
+    <div class="search">
+    <div class="search1"></div>
+    <div class="search2"></div>
+    <div class="wrap">
+        <form method="post" action = "/store/search" >
+           <%= tag(:input, 
+                   :type => "hidden", 
+                   :name =>request_forgery_protection_token.to_s, 
+                   :value => form_authenticity_token) %>
+            <div class="border">
+                <div class="select_js">
+                    <p>搜索商品</p>
+                    <div class="ico"></div>
+                    <ul style="display: none;">
+                        <li ectype="index">搜索商品</li>
+                        <li ectype="store">搜索店铺</li>
+                    </ul>
+                    <input type="hidden" value="index" name="act">
+                </div>
+                <input type="text" class="text2" name="product[title]">
+            </div>
+            <input type="hidden" value="search" name="app">
+            <input type="submit" class="btn" value="搜索" name="commit">
+        </form>
+        <p><a href="index.php?app=category">商品分类</a><br><a href="index.php?app=category&amp;act=store">店铺分类</a></p>
+    </div>
+    <div class="nav">
+        <div class="nav1"></div>
+        <div class="nav2"></div>
+        <a class="buy" href="/store/cart">购物车 <strong id="cart_goods_kinds">0</strong> 种商品</a>
+        <a class="buyline" href="index.php?app=my_favorite">收藏夹</a>
+        <a class="buyline" href="index.php?app=buyer_order">我的订单</a>
+    </div>
+    </div>
+
+
+     
       <%= yield %>
     </div>
   </body>

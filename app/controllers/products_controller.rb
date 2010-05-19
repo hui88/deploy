@@ -1,16 +1,14 @@
 class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
+  before_filter :load_cart
   def index
-    @products = Product.all
-    @product_more = Product.price_more_than_100
-    @product_less = Product.price_atless_100
-
+    @cart = find_cart
     #@user_products = Product.find_all_by_user_id(params[:user_id])
     @user = User.find(params[:user_id]) 
     @user_products = @user.products
     #@user_products2 = User.find(params[:user_id]).products
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -32,7 +30,7 @@ class ProductsController < ApplicationController
   # GET /products/new.xm;l
   def new
     @product = Product.new
-
+    @user_id = params[:user_id]
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }
@@ -50,9 +48,9 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
 
     respond_to do |format|
-      if @product.save
+      if @product.save#index.html.erb
         flash[:notice] = 'Product was successfully created.'
-        format.html { redirect_to(@product) }
+        format.html { redirect_to(user_product_path(@product.user_id,@product.id)) }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
         format.html { render :action => "new" }
@@ -85,8 +83,37 @@ class ProductsController < ApplicationController
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to(products_url) }
+      format.html { redirect_to(user_products_path(@product.user_id)) }
       format.xml  { head :ok }
     end
   end
+
+  def add_to_cart 
+    @cart = find_cart
+    product = Product.find(params[:id])
+    @cart.add_item(:product => product)
+    respond_to do |format|
+      format.html{redirect_to(user_products_path(params[:user_id]))}
+      format.xml{head:ok}
+    end
+  end  
+
+  def test
+    @test = "hello" 
+    render "test"
+  end
+
+  def find_cart
+    session[:cart] ||= Cart.new
+  end
+
+  def load_cart
+    @cart = find_cart
+  end  
+  
+  def search
+    
+    
+  end
+
 end

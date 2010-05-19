@@ -1,0 +1,41 @@
+<div class="depot-form">
+  <%= error_messages_for 'order' %>
+  
+  <% form_for :order, :url => { :action => :save_order } do |form| %>
+    <fieldset>
+      <legend>Please Enter Your Details</legend>
+      <div>
+        <tr>
+          <td>Name:<%= current_user.name%> </td>
+          <td>Email:<%= current_user.email%></td>
+          <td>QQ:<%= current_user.QQ%></td>
+          <td>Phone:<%= current_user.phone%> </td>
+          <td>address:<%= current_user.address%></td>
+        </tr> 
+      </div>
+      <td>Total_price:<%= @cart.total_price %></td> 
+      <div>
+        <%= form.label :pay_type, "Pay with:" %>
+        <%=
+        form.select :pay_type,
+          Order::PAYMENT_TYPES,
+          :prompt => "Select a payment method"
+      %>
+      </div>
+      <div>
+        <%= form.label :message , "Message:" %>
+        <%= form.text_area :message, :rows => 3, :cols => 40 %>
+      </div>
+      <td>
+        <%= form.hidden_field :user_id, :value => current_user.id %>
+      </td>
+      <td>
+        <%= form.hidden_field :total_price, :value => @cart.total_price %>
+      </td>
+      
+      <%= submit_tag "Place Order" , :class => "submit" %>
+    </fieldset>
+  <% end %>
+</div>
+
+ 

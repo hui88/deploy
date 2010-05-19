@@ -1,13 +1,26 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :orders
+
+  map.resources :types
+
+  map.devise_for :users
+
+
   map.resources :recipes
+  map.root :controller => 'store'
+
 
   map.resources :users do |user|
-    user.resources :products
+    #user.resources :products
+    user.resources :products, :member=> { :add_to_cart=> :get }
+    user.resources :orders
+    
   end
 
 
-  map.resources :products
+  map.resources :products, :member=> { :cart=> :get }
 
+  # map.resources :store, :collection => {:search => :post}
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

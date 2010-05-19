@@ -1,0 +1,95 @@
+<br/>
+<br/>
+<div class="content">
+    <div class="module_common">
+        <h2><b>请填写您的详细资料</b></h2>
+        <div class="wrap">
+            <div class="wrap_child">
+                <div style="background: none repeat scroll 0% 0% rgb(255, 255, 255);" class="login_con">
+                    <div class="login_left">
+                      <form id="find_password_form" method="POST" action="">
+                           <table> 
+                             <tbody>
+                               <tr>
+                                 <td>您的登录账号:</td>
+                                 <td><input type="text" name="username" class="text width5"></td>
+                               </tr>
+                               <tr>
+                                 <td>您的Email:</td><td><input type="text" name="email" class="text width5"></td>
+                               </tr>
+                               <tr>
+                                 <td>验证码:</td>
+                                 <td><input type="text" id="captcha1" name="captcha" class="text"><span><a href="javascript:change_captcha($('#captcha'));" class="renewedly"><img src="index.php?app=captcha" id="captcha"></a></span></td>
+                               </tr>
+                               <tr class="distance">
+                                 <td></td>
+                                 <td><input type="submit" id="captcha1" class="btn" name="Submit" value="提交"></td>
+                               </tr>
+                             </tbody>
+                           </table>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="module_common">
+        <h2><b>请填写您的详细资料</b></h2>
+        <div class="wrap">
+            <div class="wrap_child">
+                <div style="background: none repeat scroll 0% 0% rgb(255, 255, 255);" class="login_con">
+                    <div class="login_left">
+                      <% form_for  resource_name, resource, :url => registration_path(resource_name) do |f| -%>
+                        <%= f.error_messages %>
+                        <p><%= f.label :email,"您的邮箱地址：" %></p>
+                        <p><%= f.text_field :email %></p>
+
+                        <p><%= f.label :password,"密码：" %></p>
+                        <p><%= f.password_field :password %></p>
+
+                        <p><%= f.label :password_confirmation,"确认密码：" %></p>
+                        <p><%= f.password_field :password_confirmation %></p>
+
+                        <p>
+                          <%= f.label :name,"账号名称：" %><br />
+                          <%= f.text_field :name%>
+                        </p>
+                        <p>
+                          <%= f.label :sex, "性别：" %>
+                          <%=
+                          f.select :sex,
+                            User::SEX_TYPE,
+                            :prompt => "请选择"%>
+                        </p>
+                        <p>
+                          <%= f.label :phone,"电话："%><br />
+                          <%= f.text_field :phone%>
+                        </p>
+                        <p>
+                          <%= f.label :qq,"QQ:"%><br />
+                          <%= f.text_field :QQ%>
+                        </p>
+                        <p>
+                          <%= f.label :address,"地址:" %><br />
+                          <%= f.text_area:address,:rows => 3, :cols => 40%>
+                        </p>
+
+                        <p><%= f.submit "立即注册" %></p>
+                        <p><input type="submit" id="captcha1" class="btn" name="Submit" value="提交"></p>
+                        <a href="/users/sign_up" class="login_btn" title="立即注册"></a>
+                      <% end -%>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="color: rgb(102, 102, 102);" id="footer">
+  <p>
+    <a href="/store">首页</a>
+  </p>
+</div>
+

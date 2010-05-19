@@ -82,4 +82,9 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def search
+    @users=User.find(:all,:conditions => ["name like ?","%#{params[:user][:name]}%"])
+    render :action => :index
+  end
 end

@@ -1,12 +1,31 @@
+require "paperclip"
 class Product < ActiveRecord::Base
-  def self.price_less_than_10
-    Product.find(:conditions =>["price <= 10"]) 
+  has_many :line_items
+  belongs_to :users
+  belongs_to :types
+  # validation stuff...
+
+  has_attached_file :image, :styles => { :big => "400x400>", :small => "151x179>" }
+
+
+
+
+  validates_presence_of :title, :description 
+
+
+  validates_numericality_of :price
+
+
+  validate :price_must_be_at_least_a_cent
+
+
+  validates_uniqueness_of :title
+
+
+protected
+  def price_must_be_at_least_a_cent
+    errors.add(:price, 'should be at least 0.01') if price.nil? ||
+                       price < 0.01
   end
-  
-  def self.price_more_than_100
-    Product.find(:all,:conditions =>["price >= 100"]) 
-  end
-  def self.price_atless_100
-    Product.find(:all,:conditions =>["price <= 100"]) 
-  end
+
 end
