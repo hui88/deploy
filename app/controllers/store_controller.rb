@@ -68,7 +68,11 @@ class StoreController < ApplicationController
       render :action => :checkout
     end
   end
-
+  
+  def done
+  
+  end
+  
   def search
     @products=Product.find(:all,:conditions=>["title like ?","%#{params[:product][:title]}%"])
     
@@ -93,7 +97,7 @@ class StoreController < ApplicationController
   
   def redirect_to_index(msg)
     flash[:notice]=msg
-    redirect_to :action => :index
+    redirect_to :action => :done
   end
 
 end

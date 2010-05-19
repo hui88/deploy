@@ -41,23 +41,18 @@
                 </ul>
  
                 <% form_for :order, :url => { :action => :save_order } do |form| %>
-                 <h4 class="add_title"><b class="ico">选择付款方式</b></h4>
-                   <div class="fashion_list">
-                        <ul shipping_id="815" class="receive_add">
+                  <fieldset>
+                    <h4 class="add_title"><b class="ico">选择付款方式</b></h4>
+                    <div class="fashion_list">
+                      <ul shipping_id="815" class="receive_add">
                         <li>     
-                          <div>
-                            <%=
-                              form.select :pay_type,
-                              Order::PAYMENT_TYPES,
-                              :prompt => "请选择一种付款方式"
-                            %>
-                          </div>
+                          <%=form.select :pay_type,Order::PAYMENT_TYPES,:prompt => "请选择一种付款方式"%>
                         </li>
-                    </ul>
-                   </div>               
+                      </ul>
+                    </div>               
                     <h4 class="add_title"><b class="ico">给卖家的附言</b></h4>
                     <div class="message">
-                      <textarea name="order[message]"  id="postscript">选填，可以告诉卖家您对商品的特殊需求，如颜色、尺码等</textarea>
+                      <textarea name="order[message]"  id="postscript"></textarea>
                     </div>   
                     <td>
                       <%= form.hidden_field :user_id, :value => current_user.id %>
@@ -65,28 +60,18 @@
                     <td>
                       <%= form.hidden_field :total_price, :value => @cart.total_price %>
                     </td>
-                    
-                    <%= submit_tag "Place Order" , :class => "btn" %>
-                  </fieldset>
+                    <%= submit_tag "Place Order" , :class => "submit" %>
+                   </fieldset>
                 <% end %>
-                <h4 class="add_title"><b class="ico">选择配送方式</b></h4>
-                <div class="fashion_list">
-                                        <ul shipping_id="815" class="receive_add">
-                        <li class="radio"><input type="radio" value="815" name="shipping_id"></li>
-                        <li class="fashion">BABY 巧妙屋</li>
-                        <li class="pay">配送费用:&nbsp;<span ectype="shipping_fee" class="money">￥25.00</span></li>
-                        <li class="explain">惠州市区外采用快递方式送货</li>
-                    </ul>
-                   </div>               
-                <h4 class="add_title"><b class="ico">给卖家的附言</b></h4>
-                <div class="message">
-                    <textarea onclick="postscript_activation(this);" id="postscript">选填，可以告诉卖家您对商品的特殊需求，如颜色、尺码等</textarea>
-                </div>                <div class="make_sure">
-                    <p>订单总价:&nbsp;<strong id="order_amount" class="fontsize3">￥124.00</strong></p>
-                    <p>
-                        <a class="btn" name= "commit" >下单完成并支付</a>
+                    <div class="make_sure">
+                      <p>订单总价:&nbsp;<strong id="order_amount" class="fontsize3">￥<%= @cart.total_price%></strong></p>
+                      <p>
+                        <input class="btn" type="submit" name= "commit" value="下单完成" >                        
                         <a class="back" href="/store/cart">返回购物车</a>
-                    </p>
+                      </p>
+                    </div> 
+
+              
                 </div>            </div>
             <div class="sidelist">
                 <h4 class="add_title"><b class="ico">已选商品</b></h4>
@@ -127,17 +112,6 @@
   
   <% form_for :order, :url => { :action => :save_order } do |form| %>
     <fieldset>
-      <legend>Please Enter Your Details</legend>
-      <div>
-        <tr>
-          <td>Name:<%= current_user.name%> </td>
-          <td>Email:<%= current_user.email%></td>
-          <td>QQ:<%= current_user.QQ%></td>
-          <td>Phone:<%= current_user.phone%> </td>
-          <td>address:<%= current_user.address%></td>
-        </tr> 
-      </div>
-      <td>Total_price:<%= @cart.total_price %></td> 
       <div>
         <%= form.label :pay_type, "Pay with:" %>
         <%=
