@@ -47,7 +47,7 @@ class StoreController < ApplicationController
     session[:cart]=nil
     redirect_to_index("Your cart is currently empty!")
   end 
-
+  
   def checkout
     @cart =find_cart
     if @cart.items.empty?
@@ -70,7 +70,7 @@ class StoreController < ApplicationController
   end
   
   def done
-  
+
   end
   
   def search

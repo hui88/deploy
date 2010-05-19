@@ -9,9 +9,13 @@
             <ul class="particular">
               <% User.all.each do |user| %>
                 <li>
-                  <div class="pic"><a href="./?771824"><img width="65" height="65" src="data/files/store_771824/other/store_logo.jpg"></a></div>
+                  <div class="pic">
+                    <a href="/users/<%= user.id%>">
+                      <img width="65" height="65" src="<%= user.image.url%>">
+                    </a>
+                  </div>
                     <dl>
-                      <dt><a title="" href="./?771824">天虹商场</a></dt>
+                      <dt><a title="" href="/users/<%= user.id%>"><%= user.title%></a></dt>
                       <dd>店主:<%= user.name %></dd>
                       <dd>商品:<%= user.products.size%></dd>
                       <dd>QQ:<%= user.QQ%> </dd>
@@ -59,7 +63,9 @@
     <div class="wrap">
         <div class="pic">
           <% Type.find(1).products.each do |product|%>
-             <img width="210" height="280" src="<%= product.image.url%>">
+             <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
+               <img width="210" height="280" src="<%= product.image.url%>">
+            </a> 
           <%end%>   
         </div>
         <div class="portrait">
@@ -67,11 +73,15 @@
              <% Type.find(1).products.each do |product|%>
                <li>
                  <p>
-                   <a target="_blank" href="<%  %>">
+                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
                      <img width="78" height="78" src="<%= product.image.url%>">
                    </a>  
                  </p>
-                 <h3><%= link_to "#{product.title}"%><span>￥<%= product.price%></span></h3>
+                 <h3>
+                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
+                     <span>￥<%= product.price%></span>
+                   </a>
+                 </h3>
                </li>
              <% end %>
             </ul>
@@ -81,7 +91,9 @@
                 <ul class="list_text">
                   <% Type.find(1).products.each do |product|%>
                      <li>
-                       <%= link_to "#{product.title}"%>
+                       <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
+                         <%= product.title%>
+                       </a>  
                      </li>
                   <%end%>
                 </ul>
@@ -109,13 +121,15 @@
               <% Type.find(2).products.each do |product|%>
                 <li>
                   <p>
-                    <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">                    
+                    <a target="_blank" href="<%= user_product_path(product.user_id,product.id) %>">                    
                       <img width="100" height="100" src="<%= product.image.url%>">
                     </a>  
                   </p>
-                  <h3>
-                    <%= link_to "#{product.title}"%><span>￥<%= product.price%></span>
-                  </h3>
+                 <h3>
+                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
+                     <span>￥<%= product.price%></span>
+                   </a>
+                 </h3>
                 </li>
               <% end %>
             </ul>
@@ -123,7 +137,9 @@
             <ul class="list_text">
               <% Type.find(2).products.each do |product|%>
                 <li>
-                 <%= link_to "#{product.title}"%> 
+                  <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
+                    <%= product.title%>
+                  </a>                
                 </li>
               <% end %>
             </ul>
@@ -139,20 +155,26 @@
     </h2>
     <div class="wrap">
         <div class="pic">
-          <a target="_blank" href="http://buy.xizi.com/index.php?app=goods&amp;id=17552">
-            <img width="210" height="280" src="data/files/mall/template/201005100617429514.jpg">
-          </a>
+          <% Type.find(3).products.each do |product|%>
+             <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
+               <img width="210" height="280" src="<%= product.image.url%>">
+            </a> 
+          <%end%>   
         </div>
         <div class="portrait">
             <ul class="list_pic">
             <% Type.find(3).products.each do |product|%>
                <li>
                  <p>
-                   <a target="_blak" href="<% %>">
+                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
                      <img width="78" height="78" src="<%= product.image.url%>">
                    </a>  
                  </p>
-                 <h3><%= link_to "#{product.title}"%><span>￥<%= product.price%></span></h3>
+                 <h3>
+                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
+                     <span>￥<%= product.price%></span>
+                   </a>
+                 </h3>
                </li>
              <% end %>
              </ul>
@@ -162,14 +184,11 @@
                 <ul class="list_text">
                   <% Type.find(3).products.each do |product|%>
                      <li>
-                       <%= link_to "#{product.title}"%>
+                       <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
+                         <%= product.title%>
+                       </a>  
                      </li>
                   <%end%>
-                  <li>
-                    <a title="沙发床" target="_blank" href="index.php?app=goods&amp;id=18604">
-                      沙发床
-                    </a>
-                  </li>
                 </ul>
             </div>
         </div>
@@ -185,7 +204,7 @@
     <div class="wrap">
         <div class="pic">
           <% Type.find(4).products.each do |product|%>
-             <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">
+             <a target="_blank" href="<%= user_product_path(product.user_id,product.id) %>">
                <img width="210" height="280" src="<%= product.image.url%>">
              </a>  
           <%end%>  
@@ -198,9 +217,11 @@
                       <img width="100" height="100" src="<%= product.image.url%>">
                     </a>  
                   </p>
-                  <h3>
-                    <%= link_to "#{product.title}"%><span>￥<%= product.price%></span>
-                  </h3>
+                 <h3>
+                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
+                     <span>￥<%= product.price%></span>
+                   </a>
+                 </h3>
                 </li>
               <% end %>
             </ul>
@@ -208,18 +229,12 @@
             <ul class="list_text">
                <% Type.find(4).products.each do |product|%>
                 <li>
-                 <%= link_to "#{product.title}"%> 
+                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
+                     <%= product.title%>
+                   </a>  
                 </li>
                <% end %>
-                                <li><a title="沙发床" target="_blank" href="index.php?app=goods&amp;id=18604">沙发床</a></li>
-                                <li><a title="MOTIVI  手提包/斜挎包 两用 预订款" target="_blank" href="index.php?app=goods&amp;id=18603">MOTIVI  手提包/斜挎包 两用 预订款</a></li>
-                                <li><a title="土黄柳丁手提包/单肩斜挎 两用两色 预订款" target="_blank" href="index.php?app=goods&amp;id=18602">土黄柳丁手提包/单肩斜挎 两用两色 预订款</a></li>
-                                <li><a title="黑色柳丁手提包/单肩斜挎 两用两色 预订款" target="_blank" href="index.php?app=goods&amp;id=18601">黑色柳丁手提包/单肩斜挎 两用两色 预订款</a></li>
-                                <li><a title="欧美新款靴帮镂空鱼嘴高跟凉鞋" target="_blank" href="index.php?app=goods&amp;id=18600">欧美新款靴帮镂空鱼嘴高跟凉鞋</a></li>
-                                <li><a title="夜店首选亮跟性感鱼嘴凉鞋女鞋" target="_blank" href="index.php?app=goods&amp;id=18599">夜店首选亮跟性感鱼嘴凉鞋女鞋</a></li>
-                                <li><a title="高档军绿色连体裤  预订款" target="_blank" href="index.php?app=goods&amp;id=18598">高档军绿色连体裤  预订款</a></li>
-                                <li><a title="※华华卡通花束※ 12只米奇米妮 迪士尼公仔花 全国速递 #947" target="_blank" href="index.php?app=goods&amp;id=18597">※华华卡通花束※ 12只米奇米妮 迪士尼公仔花 全国速递 #947</a></li>
-                            </ul>
+            </ul>
         </div>
     </div>
 </div>

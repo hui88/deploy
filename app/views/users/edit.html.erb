@@ -8,6 +8,15 @@
     <%= f.text_field :name,:size => 10 %>
   </p>
   <p>
+    <%= f.label :title,"Title:" %><br />
+    <%= f.text_field :title,:size => 10 %>
+  </p>
+  <p>
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </p>
+  
+  <p>
     <%= f.label :sex, "Sex:" %>
     <%=
     f.select :sex,
