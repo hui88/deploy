@@ -89,6 +89,15 @@ class StoreController < ApplicationController
     )
   end
 
+  def type
+    @type = Type.find(params[:type_id])
+    @products = @type.products
+    @products = @products.paginate(
+      :page => params[:page],
+      :per_page => 2
+    )
+  end
+
   private
 
   def find_cart
