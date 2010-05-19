@@ -7,10 +7,10 @@
   <dl>
     <dt>我的账户</dt>
     <dd>
-      <a class="normal" href="index.php?app=member"><span class="ico1">账户概览</span></a>
+      <a class="normal" href="/users/<%= @user.id %>"><span class="ico1">账户概览</span></a>
     </dd>
     <dd>
-      <a class="normal" href="index.php?app=member&amp;act=profile"><span class="ico2">个人资料</span></a>
+      <a class="normal" href="/users/<%= @user.id %>/edit"><span class="ico2">个人资料</span></a>
     </dd>
   </dl>
     <dl>
