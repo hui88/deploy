@@ -26,12 +26,13 @@
     <ul id="nav">
     <div class="nav1"></div>
     <div class="nav2"></div>
-    <li><a href="/store" class="link"><span>首页</span></a></li>
+    <li><a href="/" class="link"><span>首页</span></a></li>
     </ul>
     <div class="search">
     <div class="search1"></div>
     <div class="search2"></div>
-    <div class="wrap">
+    
+    <div class="wrap" style="float:left;padding:9px 0 0 15px;">
         <form method="post" action = "/store/search" >
            <%= tag(:input, 
                    :type => "hidden", 

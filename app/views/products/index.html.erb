@@ -1,35 +1,72 @@
-
-<div id="product-list">
-  <h1>Listing products</h1>
-  
-  <table>
-    <% @user_products.each do |product| %>
-      <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
-        
-        <td>
-          <%= image_tag product.image.url,:class => 'list-image'%>
-        </td>
-        
-        <td class="list-description">
-          <dl>
-            <dt><%=h product.title %></dt>
-            <dd><%=h truncate(product.description.gsub(/<.*？>/,''),:length => 80) %></dd>
-          </dl>
-        </td>
-        
-        <td class="list-actions">
-          <%= link_to 'Show', user_product_path(product.user_id,product.id) %><br/>
-          <%= link_to 'Edit', edit_user_product_path(product.user_id,product.id) %><br/>
-          <%= link_to 'Destroy', user_product_path(product.user_id,product.id), 
-                      :confirm => 'Are you sure?', 
-                      :method => :delete %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+<%= stylesheet_link_tag 'user'%>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+    <%= render :partial => "shared/user_left", :object => @user %>
+<div id="right">
+<ul class="tab">
+<li class="active">商品列表</li>
+</ul>        <div class="wrap1">
+<!--<div class="eject_btn_two eject_pos1" title="淘宝助理导入"><b class="ico1" onclick="go('index.php?app=my_goods&amp;act=import_taobao');">淘宝助理导入</b></div>
+<div class="eject_btn_two eject_pos2" title="新增商品"><b class="ico2" onclick="go('index.php?app=my_goods&amp;act=add');">新增商品</b></div>-->
+<div title="新增商品" class="eject_btn_two eject_pos1">
+  <b class="ico2"><%= link_to "新增商品", new_user_product_path(params[:user_id],params[:id]) %></b>
 </div>
+<div class="public_select table">
+<table server="http://buy.xizi.com/index.php?app=my_goods&amp;act=ajax_col" id="my_goods">
 
-          <br />
+<tbody>
+<tr ectype="table_header" class="gray">
+<th width="30"></th>
+<th width="55"></th>
+<th width="150" class="cursor_pointer" title="排序" inputwidth="90%" checker="check_required" column="goods_name" coltype="editable"><span ectype="order_by">商品名称</span></th>
+<th width="70" class="cursor_pointer" title="排序" column="cate_id"><span ectype="order_by">商品分类</span></th>
+<th width="50" class="cursor_pointer" title="排序" inputwidth="55px" checker="check_required" column="brand" coltype="editable"><span ectype="order_by">品牌</span></th>
+<th width="50" title="排序" inputwidth="50px" checker="check_number" column="price" coltype="editable" class="cursor_pointer"><span ectype="order_by">价格</span></th>
+<th width="50" title="排序" inputwidth="50px" checker="check_pint" column="stock" coltype="editable" class="cursor_pointer"><span ectype="order_by">库存</span></th>
+<th width="35" class="cursor_pointer" title="排序" checker="" offclass="wrong_ico" onclass="right_ico" column="if_show" coltype="switchable"><span ectype="order_by">上架</span></th>
+<th width="35" class="cursor_pointer" title="排序" checker="" offclass="wrong_ico" onclass="right_ico" column="recommended" coltype="switchable"><span ectype="order_by">推荐</span></th>
+<th width="35" class="cursor_pointer" title="排序" column="closed"><span ectype="order_by">禁售</span></th>
+<th class="th2"><span fieldname="views" ectype="order_by">浏览量</span></th>
+<th>操作</th>
+</tr>
+<% @user_products.each do |product| %>
+    <tr idvalue="18831" ectype="table_item" class="line last_line">
+    <td width="25" class="align2"><input type="checkbox" value="18831" class="checkitem"></td>
+    <td width="50" class="align2"><a target="_blank" href="index.php?app=goods&amp;id=18831"><img width="50" height="50" src="http://buy.xizi.com/data/system/default_goods_image.gif"></a></td>
+    <td align="align2" width="150" class="">
+    <p class="ware_text"><span ectype="editobj" class="color2" idvalue="18831"><%= product.title %></span></p>                        </td>
+    <td width="65"><span class="color2"><%= product.type.name %></span></td>
+    <td width="50" class="align2"><span ectype="editobj" class="color2" idvalue="18831"></span></td>
+    <td width="50" class="align2"><span ectype="editobj" class="color2" idvalue="18831"><%= product.price %></span></td>
+    <td width="50" class="align2"><span ectype="editobj" class="color2" idvalue="18831">10</span></td>
+    <td width="30" class="align2"><span status="on" class="right_ico" ectype="editobj" style="margin: 0px 5px;" idvalue="18831"></span></td>
+    <td width="30" class="align2"><span status="on" class="right_ico" ectype="editobj" style="margin: 0px 5px;" idvalue="18831"></span></td>
+    <td width="13" class="align2"><span class="no_ico" style="margin: 0px 5px;"></span></td>
+    <td class="align2">0</td>
+    <td>
+      <div>
+        <%= link_to 'Edit', edit_user_product_path(product.user_id,product.id), :class => "edit" %>
+        <%= link_to 'Destroy', user_product_path(product.user_id,product.id), :class => "delete", :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    </td>
+    </tr>
+<% end %>
+<tr class="line_bold line_bold_bottom">
+<td colspan="12">&nbsp;</td>
+</tr>
+</tbody></table>
+</div>
+<div class="wrap_bottom"></div>
+</div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
 
 <%= link_to 'New product', new_user_product_path(params[:user_id],params[:id])%><br/>
 <%= link_to 'back', user_path(@user)%>

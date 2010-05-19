@@ -1,0 +1,32 @@
+<div id="left">
+  <h2>
+    <strong title="用户中心"></strong>
+    <div class="adorn1"></div>
+    <div class="adorn2"></div>
+  </h2>
+  <dl>
+    <dt>我的账户</dt>
+    <dd>
+      <a class="normal" href="/users/<%= @user.id %>"><span class="ico1">账户概览</span></a>
+    </dd>
+    <dd>
+      <a class="normal" href="/users/<%= @user.id %>/edit"><span class="ico2">个人资料</span></a>
+    </dd>
+  </dl>
+    <dl>
+    <dt>我是买家</dt>
+    <dd>
+    <a class="normal" href="index.php?app=buyer_order"><span class="ico5">我的订单</span></a>
+    </dd>
+    </dl>
+    <dl>
+    <dt>我是卖家</dt>
+    <dd>
+    <a class="active" href="/users/<%= @user.id %>/products"><span class="ico8">商品管理</span></a>
+    </dd>
+    <dd>
+    <a class="normal" href="index.php?app=seller_order"><span class="ico10">订单管理</span></a>
+    </dd>
+  </dl>
+  <div class="adorn_bottom"></div>
+</div>  

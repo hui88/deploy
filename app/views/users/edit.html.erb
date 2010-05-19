@@ -1,7 +1,65 @@
-<h1>Editing user</h1>
+<%= stylesheet_link_tag 'user'%>
+<div class="content">
+    <%= render :partial => "shared/user_left", :object => @user %>
+    <div id="right">
+<ul class="tab">
+<li class="active">基本信息</li>
+</ul>            <div class="wrap1">
+<div class="public">
+<% form_for @user do |f| %>
+<div class="information">
+<div class="info individual">
+<table>
+<tbody><tr>
+<th class="width4">用户名: </th>
+<td><%= @user.name %></td>
+</tr>
+<tr>
+<th>电子信箱:</th>
+<td><%= f.text_field :email %></td>
+</tr>
+<tr>
+<th>真实姓名:</th>
+<td><input type="text" value="" name="real_name"></td>
+</tr>
+<tr>
+<th>性别: </th>
+  <td class="label">
+    <%= f.select :sex, User::SEX_TYPE, :prompt => "Select one" %>
+  </td>
+</tr>
+<tr>
+</tr>
+<tr>
+<th>QQ:</th>
+<td><%= f.text_field :QQ %></td>
+</tr>
+<tr>
+<th>地址:</th>
+<td><%= f.text_field :address %></td>
+</tr>
+<tr>
+<tr>
+<th></th>
+<td><input type="submit" value="保存修改" class="btn"></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<% end %>
+</div>
+<div class="wrap_bottom"></div>
+</div>
 
-<% form_for (@user) do |f| %>
-  <%= f.error_messages %>
+            <div class="clear"></div>
+            <div class="adorn_right1"></div>
+            <div class="adorn_right2"></div>
+            <div class="adorn_right3"></div>
+            <div class="adorn_right4"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+<h1>Editing user</h1>
 
   <p>
     <%= f.label :name,"Name:" %><br />

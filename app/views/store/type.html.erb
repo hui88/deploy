@@ -6,9 +6,7 @@
         <div class="wrap_child">
           <div class="side_textlist">
             <ul ectype="ul_category">
-              <% @group.types.each do  |type|  %>
-                <li><%= link_to type.name, "/store/type?type_id=#{type.id}" %></li>
-              <% end %>
+              <li><%= @type.name %></li>
             </ul>
           </div>
         </div>
