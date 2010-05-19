@@ -75,6 +75,16 @@ class StoreController < ApplicationController
     render :action => :index
   end
 
+
+  def group
+    @group = Group.find(params[:group_id])
+    @products = Product.all
+    @products = @products.paginate(
+      :page => params[:page],
+      :per_page => 2
+    )
+  end
+
   private
 
   def find_cart

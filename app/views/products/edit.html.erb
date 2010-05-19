@@ -25,6 +25,14 @@
     <%= f.text_field :price %>
   </p>
   <p>
+    <%= f.label :type_id, "Type:" %>
+    <%=
+      f.select :type_id,
+      Type::TYPES,
+      :prompt => "Select one"
+    %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>

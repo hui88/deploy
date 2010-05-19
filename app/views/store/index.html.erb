@@ -36,12 +36,10 @@
             <div style="margin-top: 2px;" class="assort">
                 <div class="assort_wrap">
                   <% i = 1%>
-                  <% Type.all.each do |type|%>
+                  <% Group.all.each do |group|%>
                     <dl style="margin-bottom: 8px;">
                       <dt style="line-height: 30px; font-size: 16px;" class="bg_color<%= i %>">
-                        <a href="index.php?app=search&amp;cate_id=3">
-                          <%= type.name%>
-                        </a>
+                        <%= link_to group.name, "/store/group?group_id=#{group.id}" %>
                       </dt>
                     </dl>  
                     <% i += 1 ;i = 1 if i == 6 %>
