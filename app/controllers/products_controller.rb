@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  layout "application"
   # GET /products
   # GET /products.xml
   before_filter :load_cart
@@ -19,6 +20,7 @@ class ProductsController < ApplicationController
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
+    @user = @product.user
 
     respond_to do |format|
       format.html # show.html.erb

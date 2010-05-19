@@ -23,7 +23,7 @@
             <% @products.each do |product| %>
             <li>
               <p>
-                <%= link_to image_tag(product.image.url), product %>
+                <%= link_to image_tag(product.image.url), user_product_path(product.user_id,product) %>
               </p>
               <h3>
                 <span class="text_link">
