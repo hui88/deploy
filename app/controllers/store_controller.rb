@@ -13,6 +13,7 @@ class StoreController < ApplicationController
     @cart = find_cart
     @product = Product.find(params[:id])
     product = Product.find(params[:id])
+    @user= User.find(product.user_id)
     @cart.add_item(:product => product)
     redirect_to :action => :cart
 #    respond_to do |format|
