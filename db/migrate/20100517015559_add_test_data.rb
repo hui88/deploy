@@ -4,9 +4,7 @@ class AddTestData < ActiveRecord::Migration
     User.delete_all
     Type.delete_all
 
-    
-    Type.create(:name => '书籍')
-    Type.create(:name => '电子产品')
+
     Product.create(:title => 'Pragmatic Project Automation',
     :user_id => '1',
     :type_id => '1',

@@ -32,8 +32,12 @@ Rails::Initializer.run do |config|
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
-
+  config.gem "searchlogic"
+  config.gem "will_paginate"
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+WillPaginate::ViewHelpers.pagination_options[:class] = 'page'
+WillPaginate::ViewHelpers.pagination_options[:previous_label] = '上一页'
+WillPaginate::ViewHelpers.pagination_options[:next_label] = '下一页'

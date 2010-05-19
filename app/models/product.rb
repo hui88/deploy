@@ -1,7 +1,7 @@
 require "paperclip"
 class Product < ActiveRecord::Base
   has_many :line_items
-  belongs_to :users
+  belongs_to :user
   belongs_to :types
   # validation stuff...
 
