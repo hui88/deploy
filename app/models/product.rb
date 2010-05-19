@@ -21,6 +21,9 @@ class Product < ActiveRecord::Base
 
   validates_uniqueness_of :title
 
+  def order_items
+    line_items
+  end
 
 protected
   def price_must_be_at_least_a_cent
