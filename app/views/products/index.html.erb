@@ -6,10 +6,12 @@
 <div id="right">
 <ul class="tab">
 <li class="active">商品列表</li>
-</ul>        <div class="wrap">
+</ul>        <div class="wrap1">
 <!--<div class="eject_btn_two eject_pos1" title="淘宝助理导入"><b class="ico1" onclick="go('index.php?app=my_goods&amp;act=import_taobao');">淘宝助理导入</b></div>
 <div class="eject_btn_two eject_pos2" title="新增商品"><b class="ico2" onclick="go('index.php?app=my_goods&amp;act=add');">新增商品</b></div>-->
-<div title="新增商品" class="eject_btn_two eject_pos1"><b onclick="go('index.php?app=my_goods&amp;act=add');" class="ico2">新增商品</b></div>
+<div title="新增商品" class="eject_btn_two eject_pos1">
+  <b class="ico2"><%= link_to "新增商品", new_user_product_path(params[:user_id],params[:id]) %></b>
+</div>
 <div class="public_select table">
 <table server="http://buy.xizi.com/index.php?app=my_goods&amp;act=ajax_col" id="my_goods">
 

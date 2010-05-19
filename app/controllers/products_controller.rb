@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @user_id = params[:user_id]
+    @user = User.find(@user_id)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }

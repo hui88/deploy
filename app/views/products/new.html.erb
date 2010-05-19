@@ -1,43 +1,86 @@
-<h1>New product</h1>
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+<%= stylesheet_link_tag 'user'%>
+<div class="content">
+  <div class="totline"></div>
+  <div class="botline"></div>
+     <%= render :partial => "shared/user_left", :object => @user %>
+<div id="right">
+<ul class="tab">
+<li class="active">新增商品</li>
+</ul>
+<div class="wrap1">
 
-<% form_for @product, :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description,:rows => 4,:cols => 40 %>
-  </p>
-  <p>
-    <%= f.label :image_url %><br />
-    <%= f.text_field :image_url %>
-  </p>
-  <p>
-    <%= f.label :image %><br />
-    <%= f.file_field :image %>
-  </p>
-  
-  <p>
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.label :type_id, "Type:" %>
-    <%=
-      f.select :type_id,
-      Type::TYPES,
-      :prompt => "Select one"
-    %>
-  </p>
-  
+<div class="public">
+<% form_for @product, :html => { :multipart => true, :id => "goods_form" } do |f| %>
   <%= f.hidden_field :user_id, :value => @user_id %>
-  
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+<div class="information_index">
 
+<h4>商品分类</h4>
+<div class="add_wrap">
+<div class="assort">
+<p class="txt">商品分类：</p>
+<p id="gcategory" class="select">
+<%= f.select :type_id, Type::TYPES, :prompt => "Select one" %>
+</p>
+</div>
+
+<h4>商品基本信息</h4>
+<div class="add_wrap">
+
+<div class="products" style="float:left">
+<ul>
+<li>
+<h2>商品名称：</h2>
+<div class="arrange">
+<%= f.text_field :title, :class=> "text" %>
+<span class="red">*</span></div>
+</li>
+<li>
+<h2 ectype="no_spec">价格：</h2>
+<div ectype="no_spec" class="arrange">
+<%= f.text_field :price , :class=> "text"%>
+</div>
+</li>
+<li ectype="no_spec">
+<h2>库存：</h2>
+<div class="arrange"><input type="text" class="text" value="" name="stock"></div>
+</li>
+<li ectype="no_spec">
+<h2>图片：</h2>
+<div class="arrange">
+    <%= f.file_field :image %>
+</div>
+</li>
+<li ectype="no_spec">
+<h2>商品描述：</h2>
+<div class="arrange">
+    <%= f.text_area :description,:rows => 8,:cols => 60 %>
+</div>
+</li>
+<li>
+<div class="issuance" style="float:left">
+    <%= f.submit 'Create', :class => "btn" %>
+</div>
+</li>
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+
+</div>
+</div>
+<% end %>
+</div>
+<div class="wrap_bottom"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
 <%= link_to 'Back', user_products_path(@user_id)%>

@@ -394,7 +394,7 @@ body { font-size: 12px; font-family: Arial, Verdana, sans-serif; }
 .tab .active a { color: #ff4f01; text-decoration: none; float: left; height: 26px; padding: 0 20px; }
 .tab .normal a { color: #3e3e3e; text-decoration: none; float: left; height: 26px; padding: 0 20px; }
 
-.wrap { width: 804px; border: 1px solid #e2e2e2; border-top: 0; background: #fff; position: relative; }
+.wrap1 { width: 804px; border: 1px solid #e2e2e2; border-top: 0; background: #fff; position: relative; }
 .wrap_line { width: 804px; border: 1px solid #e2e2e2; background: #fff; position: relative; }
 .wrap_bottom { width: 806px; height: 2px; overflow: hidden; background: #e9e9e9; position: absolute; bottom: -3px; left: -1px; }
 
