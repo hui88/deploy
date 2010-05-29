@@ -1,38 +1,9 @@
-<br/>
-<br/>
-<div class="content">
-    <div class="module_common">
-        <h2><b>请填写您的详细资料</b></h2>
-        <div class="wrap">
-            <div class="wrap_child">
-                <div style="background: none repeat scroll 0% 0% rgb(255, 255, 255);" class="login_con">
-                    <div class="login_left">
-                      <form id="find_password_form" method="POST" action="">
-                           <table> 
-                             <tbody>
-                               <tr>
-                                 <td>您的登录账号:</td>
-                                 <td><input type="text" name="username" class="text width5"></td>
-                               </tr>
-                               <tr>
-                                 <td>您的Email:</td><td><input type="text" name="email" class="text width5"></td>
-                               </tr>
-                               <tr>
-                                 <td>验证码:</td>
-                                 <td><input type="text" id="captcha1" name="captcha" class="text"><span><a href="javascript:change_captcha($('#captcha'));" class="renewedly"><img src="index.php?app=captcha" id="captcha"></a></span></td>
-                               </tr>
-                               <tr class="distance">
-                                 <td></td>
-                                 <td><input type="submit" id="captcha1" class="btn" name="Submit" value="提交"></td>
-                               </tr>
-                             </tbody>
-                           </table>
-                      </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+    <a href="/store/index">首页</a> &gt;
+    注册        
 </div>
 <div class="content">
     <div class="module_common">
@@ -41,46 +12,56 @@
             <div class="wrap_child">
                 <div style="background: none repeat scroll 0% 0% rgb(255, 255, 255);" class="login_con">
                     <div class="login_left">
-                      <% form_for  resource_name, resource, :url => registration_path(resource_name) do |f| -%>
-                        <%= f.error_messages %>
-                        <p><%= f.label :email,"您的邮箱地址：" %></p>
-                        <p><%= f.text_field :email %></p>
-
-                        <p><%= f.label :password,"密码：" %></p>
-                        <p><%= f.password_field :password %></p>
-
-                        <p><%= f.label :password_confirmation,"确认密码：" %></p>
-                        <p><%= f.password_field :password_confirmation %></p>
-
-                        <p>
-                          <%= f.label :name,"账号名称：" %><br />
-                          <%= f.text_field :name%>
-                        </p>
-                        <p>
-                          <%= f.label :sex, "性别：" %>
-                          <%=
-                          f.select :sex,
-                            User::SEX_TYPE,
-                            :prompt => "请选择"%>
-                        </p>
-                        <p>
-                          <%= f.label :phone,"电话："%><br />
-                          <%= f.text_field :phone%>
-                        </p>
-                        <p>
-                          <%= f.label :qq,"QQ:"%><br />
-                          <%= f.text_field :QQ%>
-                        </p>
-                        <p>
-                          <%= f.label :address,"地址:" %><br />
-                          <%= f.text_area:address,:rows => 3, :cols => 40%>
-                        </p>
-
-                        <p><%= f.submit "立即注册" %></p>
-                        <p><input type="submit" id="captcha1" class="btn" name="Submit" value="提交"></p>
-                        <a href="/users/sign_up" class="login_btn" title="立即注册"></a>
-                      <% end -%>
-
+                         <% form_for  resource_name, resource,:id => "find_password_form", :url => registration_path(resource_name), :html => { :multipart => true } do |f| -%>
+                           <table> 
+                             <tbody>
+                               <tr>
+                                 <td>您的Email:</td>
+                                 <td><%= f.text_field :email ,:class => "text width5"%></td>
+                               </tr>
+                               <tr>
+                                 <td>您的密码:</td>
+                                 <td><%= f.password_field :password ,:class => "text width5"%></td>
+                               </tr>
+                               <tr>
+                                 <td>确认密码:</td>
+                                 <td><%= f.password_field :password_confirmation,:class => "text width5" %></td>
+                               </tr>
+                               <tr>
+                                 <td>账号名称:</td>
+                                 <td><%= f.text_field :name,:class => "text width5"%></td>
+                               </tr>
+                               <tr>
+                                 <td>性别:</td>
+                                 <td><%=f.select :sex,User::SEX_TYPE,:prompt => "请选择"%></td>
+                               </tr>
+                               <tr>
+                                 <td>电话:</td>
+                                 <td><%= f.text_field :phone ,:class => "text width5"%></td>
+                               </tr>
+                               <tr>
+                                 <td>QQ号码:</td>
+                                 <td><%= f.text_field :QQ,:class => "text width5"%></td>
+                               </tr>
+                               <tr>
+                                 <td>地址:</td>
+                                 <td><%= f.text_field :address,:class => "text width5"%></td>
+                               </tr>
+                               <tr>
+                                 <td>店铺名称:</td>
+                                 <td><%= f.text_field :title,:class => "text width5"%></td>
+                               </tr>
+                               <tr>
+                                 <td>图像:</td>
+                                 <td><%= f.file_field :avatar,:class => "text width5"%></td>
+                               </tr>
+                               <tr class="distance">
+                                 <td></td>
+                                 <td><%= f.submit "立即注册",:id => "captcha1",:class => "btn" %></td>
+                               </tr>
+                             </tbody>
+                           </table>
+                          <%end%> 
                     </div>
                 </div>
             </div>

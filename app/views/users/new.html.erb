@@ -1,19 +1,110 @@
-<h1>New user</h1>
+<%= stylesheet_link_tag 'user'%>
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+            <a href="/users/<%=current_user.id %>">个人中心</a> &gt;
+                基本信息        </div>
 
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
+<div class="content">
+    <%= render :partial => "shared/user_left", :object => @user %>
+    <div id="right">
+<ul class="tab">
+<li class="active">新增用户</li>
+</ul>            <div class="wrap1">
+<div class="public">
+<% form_for @user do |f|%>
+<div class="information">
+<div class="info individual">
+<table>
+<tbody>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :sex%><br />
-    <%= f.text_field :sex %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
+  <tr>
+    <th class="width4">用户名: </th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+
+  <tr>
+    <th>电子信箱:</th>
+    <td><%= f.text_field :email %></td>
+  </tr>
+
+  <tr> 
+    <th><%#= 密码： %></th>
+    <th><%#= f.password_field :password %></th>
+  </tr>
+
+  <tr> 
+    <th><%#= 确认密码： %></th>
+    <th><%#= f.password_field :password_confirmation %></th>
+  </tr>
+                      
+  <tr>
+    <th>店铺名称:</th>
+    <td><%= f.text_field :title%></td>
+  </tr>
+
+  <tr>
+    <th>图像:</th>
+    <td><%= f.file_field :image%></td>
+  </tr>
+
+  <tr>
+    <th>性别: </th>
+    <td class="label">
+    <%= f.select :sex, User::SEX_TYPE, :prompt => "Select one" %>
+    </td>
+  </tr>
+
+
+  <tr> 
+    <th>电话:</th> 
+    <td><%= f.text_field :phone %></td>
+  </tr>
+
+  <tr> 
+    <th>QQ:</th> 
+    <td><%= f.text_field :QQ %></td>
+  </tr>
+
+  <tr>
+    <th>地址:</th>
+    <td><%= f.text_field :address %></td>
+  </tr>
+
+  <tr>
+    <th>角色: </th>
+    <td class="label">
+    <%= f.select :role, User::ROLE_TYPE, :prompt => "角色" %>
+    </td>
+  </tr>
+  
+  <tr>
+    <th></th>
+    <td><input type="submit" value="确定" class="btn"></td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+</div>
 <% end %>
+</div>
+<div class="wrap_bottom"></div>
+</div>
 
-<%= link_to 'Back', users_path %>
+            <div class="clear"></div>
+            <div class="adorn_right1"></div>
+            <div class="adorn_right2"></div>
+            <div class="adorn_right3"></div>
+            <div class="adorn_right4"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+<div style="color: rgb(102, 102, 102);" id="footer">
+  <p>
+    <a href="/store">首页</a>
+  </p>
+</div>
+

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @users = User.all
-
+    @user = current_user
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -87,4 +87,11 @@ class UsersController < ApplicationController
     @users=User.find(:all,:conditions => ["name like ?","%#{params[:user][:name]}%"])
     render :action => :index
   end
+  
+  def shop
+    @user=User.find(params[:id])
+    @products=@user.products
+  end
+
+
 end

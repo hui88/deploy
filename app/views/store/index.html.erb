@@ -1,3 +1,10 @@
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> 
+                        </div>
+
 <div style="margin-top: 0px;" class="content">
     <div widget_type="area" area="bottom_left" class="left">
         
@@ -8,19 +15,21 @@
         <div class="wrap_child">
             <ul class="particular">
               <% User.all.each do |user| %>
+                <% if user.role == 'member'%>
                 <li>
                   <div class="pic">
-                    <a href="/users/<%= user.id%>">
-                      <img width="65" height="65" src="<%= user.image.url%>">
+                    <a href="/users/<%= user.id%>/shop">
+                      <img width="65" height="65" src="<%= user.avatar.url%>">
                     </a>
                   </div>
                     <dl>
-                      <dt><a title="" href="/users/<%= user.id%>"><%= user.title%></a></dt>
+                      <dt><a title="" href="/users/<%= user.id%>/shop"><%= user.title%></a></dt>
                       <dd>店主:<%= user.name %></dd>
                       <dd>商品:<%= user.products.size%></dd>
                       <dd>QQ:<%= user.QQ%> </dd>
                    </dl>
                 </li>
+                <% end%>
               <% end %>
                   
            </ul>
@@ -58,11 +67,11 @@
 <div class="widget" widget_type="widget" name="goods_module_2" id="_widget_199">
 <div style="background: none repeat scroll 0% 0% rgb(232, 181, 229);" class="module_recommend">
     <h2>
-        <b><%= Type.find(1).name%></b>
+        <b><%= @group.name%></b>
     </h2>
     <div class="wrap">
         <div class="pic">
-          <% Type.find(1).products.each do |product|%>
+          <% @products.each do |product|%>
              <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
                <img width="210" height="280" src="<%= product.image.url%>">
             </a> 
@@ -70,7 +79,7 @@
         </div>
         <div class="portrait">
             <ul class="list_pic">
-             <% Type.find(1).products.each do |product|%>
+             <% @products.each do |product|%>
                <li>
                  <p>
                    <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
@@ -79,8 +88,8 @@
                  </p>
                  <h3>
                    <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
-                     <span>￥<%= product.price%></span>
-                   </a>
+                   </a>  
+                   <span>￥<%= product.price%></span>
                  </h3>
                </li>
              <% end %>
@@ -89,7 +98,7 @@
             <div class="list_side">
                 <h2><b>最新</b></h2>
                 <ul class="list_text">
-                  <% Type.find(1).products.each do |product|%>
+                  <% @products.each do |product|%>
                      <li>
                        <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
                          <%= product.title%>
@@ -106,19 +115,19 @@
 <div class="widget" widget_type="widget" name="goods_module_1" id="_widget_729">
 <div style="background: none repeat scroll 0% 0% rgb(163, 201, 238);" class="module_recommend">
     <h2>
-      <b><%= Type.find(2).name%></b>
+      <b><%= @group1.name%></b>
     </h2>
     <div class="wrap">
         <div class="pic">
-          <% Type.find(2).products.each do |product|%>
-             <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">
+          <% @products1.each do |product|%>
+             <a target="_blank" href="<%= user_product_path(product.user_id,product.id) %>">
                <img width="210" height="280" src="<%= product.image.url%>">
              </a>  
           <%end%>   
         </div>
         <div class="diatropism">
             <ul class="list_pic">
-              <% Type.find(2).products.each do |product|%>
+              <% @products1.each do |product|%>
                 <li>
                   <p>
                     <a target="_blank" href="<%= user_product_path(product.user_id,product.id) %>">                    
@@ -127,15 +136,15 @@
                   </p>
                  <h3>
                    <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
+                   </a>  
                      <span>￥<%= product.price%></span>
-                   </a>
                  </h3>
                 </li>
               <% end %>
             </ul>
 
             <ul class="list_text">
-              <% Type.find(2).products.each do |product|%>
+              <% @products1.each do |product|%>
                 <li>
                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
                     <%= product.title%>
@@ -148,97 +157,6 @@
 </div>
 </div>
 
-<div class="widget" widget_type="widget" name="goods_module_2" id="_widget_613">
-<div style="background: none repeat scroll 0% 0% rgb(167, 216, 200);" class="module_recommend">
-    <h2>
-        <b><%= Type.find(3).name%></b>
-    </h2>
-    <div class="wrap">
-        <div class="pic">
-          <% Type.find(3).products.each do |product|%>
-             <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
-               <img width="210" height="280" src="<%= product.image.url%>">
-            </a> 
-          <%end%>   
-        </div>
-        <div class="portrait">
-            <ul class="list_pic">
-            <% Type.find(3).products.each do |product|%>
-               <li>
-                 <p>
-                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
-                     <img width="78" height="78" src="<%= product.image.url%>">
-                   </a>  
-                 </p>
-                 <h3>
-                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
-                     <span>￥<%= product.price%></span>
-                   </a>
-                 </h3>
-               </li>
-             <% end %>
-             </ul>
-            
-            <div class="list_side">
-                <h2><b>最新</b></h2>
-                <ul class="list_text">
-                  <% Type.find(3).products.each do |product|%>
-                     <li>
-                       <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
-                         <%= product.title%>
-                       </a>  
-                     </li>
-                  <%end%>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<div class="widget" widget_type="widget" name="goods_module_1" id="_widget_825">
-<div style="background: none repeat scroll 0% 0% rgb(236, 184, 188);" class="module_recommend">
-    <h2>
-        <b><%= Type.find(4).name%></b>
-    </h2>
-    <div class="wrap">
-        <div class="pic">
-          <% Type.find(4).products.each do |product|%>
-             <a target="_blank" href="<%= user_product_path(product.user_id,product.id) %>">
-               <img width="210" height="280" src="<%= product.image.url%>">
-             </a>  
-          <%end%>  
-        <div class="diatropism">
-            <ul class="list_pic">
-              <% Type.find(4).products.each do |product|%>
-                <li>
-                  <p>
-                    <a target="_blank" href="<% user_product_path(product.user_id,product.id) %>">                    
-                      <img width="100" height="100" src="<%= product.image.url%>">
-                    </a>  
-                  </p>
-                 <h3>
-                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>"><%= product.title%>
-                     <span>￥<%= product.price%></span>
-                   </a>
-                 </h3>
-                </li>
-              <% end %>
-            </ul>
-
-            <ul class="list_text">
-               <% Type.find(4).products.each do |product|%>
-                <li>
-                   <a target="_blank" href="/users/<%=product.user_id%>/products/<%=product.id%>">
-                     <%= product.title%>
-                   </a>  
-                </li>
-               <% end %>
-            </ul>
-        </div>
-    </div>
-</div>
-</div>
     </div>
 </div>
 <div style="color: rgb(102, 102, 102);" id="footer">
@@ -249,27 +167,3 @@
 
 
 
-
-
-<h1>Your Pragmatic Catalog</h1>
-<table>
-  <tr>
-    <th>Image</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Image url</th>
-    <th>Price</th>
-    <th>Action</th>
- </tr>
-
-<% @products.each do |product| %>
-  <tr>
-    <td><%= image_tag product.image.url(:small) %></td>
-    <td><%=h product.title %></td>
-    <td><%=h product.description %></td>
-    <td><img class="list-image" src="<%=h product.image_url %>"/></td>
-    <td><%=h product.price %></td>    
-    <td><%= link_to 'show',:action =>"show",:id =>product.id  %></td> 
- </tr>
- 
-<% end %>

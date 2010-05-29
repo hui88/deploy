@@ -163,7 +163,7 @@ ul, ol { list-style-type:none; }
 
 .veins1 { background: url(images/veins.gif) repeat-x 0 0; }
 .veins1 .ico2 { color: #fff; }
-.veins2 { background: url(images/veins.gif) repeat-x 0 -37px; }
+.veins2 { background: url("../images/ornament.gif") repeat-x scroll left bottom transparent; }
 .veins2 .ico2 { color: #3d3f3e; }
 
 .common_title { height: 27px; line-height: 25px; position: relative; }

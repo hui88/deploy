@@ -1,28 +1,81 @@
-<h1>Listing orders</h1>
+<%= stylesheet_link_tag 'user'%>
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+            <a href="/users/<%=current_user.id %>">个人中心</a> &gt;
+                我的订单        </div>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Total price</th>
-    <th>Pay type</th>
-    <th>Message</th>
-    <th>Time</th>
-  </tr>
+<div class="content">
+    <%= render :partial => "shared/user_left", :object => @user %>
 
-<% @orders.each do |order| %>
-  <tr>
-    <td><%=h order.user_id %></td>
-    <td><%=h order.total_price %></td>
-    <td><%=h order.pay_type %></td>
-    <td><%=h order.message %></td>
-    <td><%=h order.created_at%></td>
-    <td><%= link_to 'Show', user_order_path(order.user_id,order.id) %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div id="right">
+        <ul class="tab">
+            <li class="active">订单列表</li>
+        </ul>        
+        <% if @user.orders.size == 0%>
+          <div class="wrap1">
+            <div class="public">
+              <div class="public table">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td class="member_no_records" colspan="7">没有订单</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>  
+        <%end %>
+             <% @user.orders.each do |order|%>
+                   <div class="order_form">
+                      <h2>
+                          <p class="num">订单号: <%= order.id%></p>
+                          <p class="name"><span>店铺名: <a target="_blank" href="/users/<%= Product.find(order.line_items[0].product_id).user_id%>/products"><%= User.find(Product.find(order.line_items[0].product_id).user_id).name%></a></span></p>
+                      </h2>
+                      <% order.line_items.each do |item|%>
+                        <div class="con">
+                          <p class="ware_pic"><a target="_blank" href="/users/<%= Product.find(item.product_id).user_id%>/products/<%= Product.find(item.product_id).id%>"><img width="50" height="50" src="<%= Product.find(item.product_id).image.url%>"></a></p>
+                          <p class="ware_text"><a target="_blank" href="/users/<%= Product.find(item.product_id).user_id%>/products/<%= Product.find(item.product_id).id%>"><%= Product.find(item.product_id).title%></a><br><span class="attr"></span></p>
+                          <p class="price">价格: <span>￥<%= Product.find(item.product_id).price%></span></p>
+                          <p class="amount">数量: <span><%= item.quantity%></span></p>
+                        </div>
+                      <%end %>
+                      <div class="foot">
+                          <p class="time">下单时间:<%= order.created_at%></p>
+                          <p class="defray">支付方式: <%= %>货到付款</p>
+                          <div class="handle">
+                              <div style="float: left;">
+                                  订单总价: <b id="order415_order_amount">￥<%= order.total_price%></b>
+                              </div>
+                              <a style="display: none;" id="order415_evaluate" target="_blank" href="index.php?app=buyer_order&amp;act=evaluate&amp;order_id=415" class="btn1">我要评价</a>
+                              <a class="btn" style="display: none;" id="order415_action_pay" target="_blank" href="index.php?app=cashier&amp;order_id=415">付款</a>
+                              <input type="button" style="display: none;" id="order415_action_confirm" uri="index.php?app=buyer_order&amp;act=confirm_order&amp;order_id=415&amp;ajax" dialog_title="确认收货" dialog_width="400" dialog_id="buyer_order_confirm_order" ectype="dialog" class="btn1" value="确认收货">
+                              <input type="button" style="display: none;" id="order415_action_cancel" uri="index.php?app=buyer_order&amp;act=cancel_order&amp;order_id=415&amp;ajax" dialog_id="buyer_order_cancel_order" dialog_title="取消订单" dialog_width="400" ectype="dialog" class="btn1" value="取消订单">
+                              <a class="btn1" target="_blank" href="/users/<%= order.user_id%>/orders/<%=order.id%>">查看订单</a>
+                          </div>
+                      </div>
+                   </div>
+             <%end%>
+             <div class="order_form_page">
+               <div class="page">
+               </div>
+             </div>
+             <div class="clear"></div>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
 
-<br />
+<div style="color: rgb(102, 102, 102);" id="footer">
+  <p>
+    <a href="/store">首页</a>
+  </p>
+</div>
 
-<%= link_to 'New order', new_order_path%>

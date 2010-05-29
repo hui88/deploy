@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   # GET /groups.xml
   def index
     @groups = Group.all
-
+    @user=current_user
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @groups }
@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.xml
   def new
     @group = Group.new
-
+    @user = User.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @group }
@@ -35,6 +35,7 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
+    @user = current_user
   end
 
   # POST /groups
@@ -45,7 +46,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         flash[:notice] = 'Group was successfully created.'
-        format.html { redirect_to(@group) }
+        format.html { redirect_to(groups_url) }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
         format.html { render :action => "new" }
@@ -62,7 +63,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update_attributes(params[:group])
         flash[:notice] = 'Group was successfully updated.'
-        format.html { redirect_to(@group) }
+        format.html { redirect_to(groups_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

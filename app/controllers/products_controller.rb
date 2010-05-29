@@ -43,6 +43,7 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
+    @user=User.find(params[:user_id])
   end
 
   # POST /products
@@ -114,9 +115,5 @@ class ProductsController < ApplicationController
     @cart = find_cart
   end  
   
-  def search
-    
-    
-  end
 
 end

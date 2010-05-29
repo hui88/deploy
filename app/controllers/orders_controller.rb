@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   # GET /orders.xml
   def index
     @orders = Order.all
-
+    @user=User.find(params[:user_id])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @orders }
@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @line_items = @order.line_items
-
+    @saler=User.find(Product.find(@line_items[0].product_id).user_id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @order }

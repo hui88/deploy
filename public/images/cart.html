@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  
+    <title>Untitled</title>
+    
+    <link href="cart_files/depots.css" media="screen" rel="stylesheet" 
+type="text/css">
+    
+    
+    <script src="cart_files/jquery-1.js" type="text/javascript"></script>
+  </head><body>
+    <div id="head">
+      <h1 title="西子街"><a href="http://localhost:3000/store/index.php"><img
+ src="cart_files/site_logo.html" alt="西子街"></a></h1>
+      <div class="menu">
+          
+            您好！gao
+            <a href="http://localhost:3000/users/sign_out">退出</a>
+            <a href="http://localhost:3000/users/1" class="ico">个人页面</a>
+          
+      </div>
+    </div>
+    <ul id="nav">
+    <div class="nav1"></div>
+    <div class="nav2"></div>
+    <li><a href="http://localhost:3000/" class="link"><span>首页</span></a></li>
+    </ul>
+    <div class="search">
+    <div class="search1"></div>
+    <div class="search2"></div>
+    
+    <div class="wrap" style="float: left; padding: 9px 0pt 0pt 15px;">
+        <form method="post" action="/store/search">
+           <input name="authenticity_token" 
+value="RLkIqRBiHUcoa5TodxRxSUDnNYlWQEp/9owmHQLkFVg=" type="hidden">
+            <div class="border">
+                <div class="select_js">
+                    <p>搜索商品</p>
+                    <div class="ico"></div>
+                    <ul style="display: none;">
+                        <li ectype="index">搜索商品</li>
+                        <li ectype="store">搜索店铺</li>
+                    </ul>
+                    <input value="index" name="act" type="hidden">
+                </div>
+                <input class="text2" name="product[title]" type="text">
+            </div>
+            <input value="search" name="app" type="hidden">
+            <input class="btn" value="搜索" name="commit" type="submit">
+        </form>
+        <p><a href="http://localhost:3000/store/index.php?app=category">商
+品分类</a><br><a 
+href="http://localhost:3000/store/index.php?app=category&amp;act=store">店
+铺分类</a></p>
+    </div>
+    <div class="nav">
+        <div class="nav1"></div>
+        <div class="nav2"></div>
+        <a class="buy" href="http://localhost:3000/store/cart">购物车 <strong
+ id="cart_goods_kinds"></strong></a>
+        <a class="buyline" 
+href="http://localhost:3000/store/index.php?app=buyer_order">我的订单</a>
+    </div>
+    </div>
+
+
+     
+      <div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+    <a href="http://localhost:3000/store/index">首页</a> &gt;
+    购物车        
+</div>
+<div class="flow_chart">
+    <div title="选购商品" class="pos_x1 bg_a1"></div>
+    <div title="完成订单信息并下单" class="pos_x2 bg_b2"></div>
+    <div title="下单完成并支付" class="pos_x3 bg_c2"></div>
+</div>
+
+<div class="content">
+    <div class="module_common">
+        <div class="step_main">
+            <div class="null_shopping">
+                <h4>您的购物车是空的，您可以</h4>
+                <p>
+                    <a href="http://localhost:3000/store/index.php">选购商
+品&gt;&gt;</a>
+                    <a 
+href="http://localhost:3000/store/index.php?app=buyer_order">查看订
+单&gt;&gt;</a>
+                </p>
+            </div>
+
+            
+            <div class="clear"></div>
+
+        </div>
+    </div>
+
+</div>
+
+<div style="color: rgb(102, 102, 102);" id="footer">
+  <p>
+    <a href="http://localhost:3000/store">首页</a>
+  </p>
+</div>
+
+
+
+<h1>Your Pragmatic Cart</h1>
+<table>
+    <tbody><tr>
+      <td>Title </td>
+      <td>quantity</td>
+      <td>price</td>
+    </tr>
+      
+    <tr><td>Total Price:</td> <td>0</td>
+</tr></tbody></table>
+<form method="post" action="/store/checkout" class="button-to"><div><input
+ value="Checkout" type="submit"><input name="authenticity_token" 
+value="RLkIqRBiHUcoa5TodxRxSUDnNYlWQEp/9owmHQLkFVg=" type="hidden"></div></form>
+<form method="post" action="/store/empty_cart" class="button-to"><div><input
+ value="Empty Cart" type="submit"><input name="authenticity_token" 
+value="RLkIqRBiHUcoa5TodxRxSUDnNYlWQEp/9owmHQLkFVg=" type="hidden"></div></form>
+<form method="post" action="/" class="button-to"><div><input value="Back
+ to Shopping" type="submit"><input name="authenticity_token" 
+value="RLkIqRBiHUcoa5TodxRxSUDnNYlWQEp/9owmHQLkFVg=" type="hidden"></div></form>
+
+
+ 
+
+    
+  </body></html>

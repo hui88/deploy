@@ -1,38 +1,74 @@
-<h1>Line Items</h1>
-<table>
-  <tr>
-    <td>product</td>
-    <td>quantity</td>
-    <td>total_price</td>
-  </tr>
-<% @line_items.each do |item| %>
-  <tr>
-    <td><%=h Product.find(item.product_id).title %></td>
-    <td><%=h item.quantity %></td>
-    <td><%=h item.total_price %>元</td>
- </tr>
-<% end %>
-</table>
-<p>
-  <b>User:</b>
-  <%=h @order.user_id %>
-</p>
+<%= stylesheet_link_tag 'user'%>
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+            <a href="/users/<%=current_user.id %>">个人中心</a> &gt;
+            <a href="/users/<%=current_user.id%>/orders">我的订单</a> &gt;
+            
+                订单详情        </div>
+<div class="content">
+    <div class="particular">
+        <div class="particular_wrap">
+            <h2>订单详情</h2>
+            <div class="box">
+                <p class="num">订单号&nbsp;:&nbsp;<%= @order.id%></p>
+                <p class="time">下单时间&nbsp;:&nbsp;<%= @order.created_at%></p>
 
-<p>
-  <b>Total price:</b>
-  <%=h @order.total_price %>
-</p>
+            </div>
+            <h3>订单信息</h3>
+            <dl class="info">
+                <dt>卖家信息</dt>
+                <dd>店铺名&nbsp;:&nbsp;<%=@saler.name%></dd>
+                <dd>电话号码&nbsp;:&nbsp;<%=@saler.phone%></dd>
+                <dd>QQ&nbsp;:&nbsp;<%=@saler.QQ%></dd>
+                <dd>电子邮箱&nbsp;:&nbsp;<%=@saler.email%></dd>
+                <dd>地址&nbsp;:&nbsp;<%=@saler.address%></dd>
+            </dl>
+            <div class="ware_line">
+                <div class="ware">
+                  <% @line_items.each do |item|%>
+                     <div class="ware_list">
+                        <div class="ware_pic"><img width="50" height="50" src="<%= Product.find(item.product_id).image.url%>"></div>
+                        <div class="ware_text">
+                            <p class="ware_text1">
+                                <a href="/users/<%=Product.find(item.product_id).user_id%>/products/<%=item.product_id%>"><%=Product.find(item.product_id).title%></a><br>
+                                <span></span>
+                            </p>
+                            <p class="ware_text2">
+                                <span>数量&nbsp;:&nbsp;<strong><%= item.quantity%></strong></span>
+                                <span>价格&nbsp;:&nbsp;<strong>￥<%= Product.find(item.product_id).price%></strong></span>
+                            </p>
+                        </div>
+                    </div>
+                  <%end%>
+                                        <div class="transportation">支付方式&nbsp;:&nbsp;<span><%=@order.pay_type%><strong>(暂无)</strong></span>总价&nbsp;:&nbsp;<b>￥<%= @order.total_price%></b></div>
+                    <ul class="order_detail_list">
+                                                                       <li>下单时间&nbsp;:&nbsp;<%=@order.created_at%></li>
+                                                <li>留言&nbsp;:&nbsp;<%= @order.message%>(选填)</li>
+                                                                                            </ul>
+                </div>
+            </div>
 
-<p>
-  <b>Pay type:</b>
-  <%=h @order.pay_type %>
-</p>
+            <h3>买家信息</h3>
+            <div class="goods">
+                收货地址&nbsp;:&nbsp;<%= User.find(@order.user_id).address%><br>
+                联系人&nbsp;:&nbsp;<%= User.find(@order.user_id).name%><br>                
+                联系电话&nbsp;:&nbsp;<%= User.find(@order.user_id).phone%>                                           </div>
 
-<p>
-  <b>Message:</b>
-  <%=h @order.message %>
-</p>
+            <div class="particular_bottom"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="adorn_right1"></div>
+        <div class="adorn_right2"></div>
+        <div class="adorn_right3"></div>
+        <div class="adorn_right4"></div>
+    </div>
+    <div class="clear"></div>
+</div>
 
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', user_orders_path(@order.user_id) %>
+
+

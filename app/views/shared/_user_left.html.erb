@@ -13,20 +13,31 @@
       <a class="normal" href="/users/<%= @user.id %>/edit"><span class="ico2">个人资料</span></a>
     </dd>
   </dl>
-    <dl>
+
+  <dl>
     <dt>我是买家</dt>
     <dd>
-    <a class="normal" href="index.php?app=buyer_order"><span class="ico5">我的订单</span></a>
-    </dd>
-    </dl>
-    <dl>
-    <dt>我是卖家</dt>
-    <dd>
-    <a class="active" href="/users/<%= @user.id %>/products"><span class="ico8">商品管理</span></a>
-    </dd>
-    <dd>
-    <a class="normal" href="index.php?app=seller_order"><span class="ico10">订单管理</span></a>
+    <a class="normal" href="/users/<%= @user.id%>/orders"><span class="ico5">我的订单</span></a>
     </dd>
   </dl>
+
+  <dl>
+    <dt>我是卖家</dt>
+    <dd>
+    <a class="normal" href="/users/<%= @user.id %>/products"><span class="ico8">商品管理</span></a>
+    </dd>
+  </dl>
+<%if current_user.role == 'admin'%>
+  <dl>
+    <dt>我是管理员</dt>
+    <dd>
+      <a class="normal" href="/users/"><span class="ico16">用户管理</span></a>
+    </dd>
+    <dd>
+      <a class="normal" href="/groups"><span class="ico9">分类管理</span></a>
+    </dd>
+    
+  </dl>
+<%end%>
   <div class="adorn_bottom"></div>
 </div>  

@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :orders
 
-  map.resources :types
+
 
   map.devise_for :users
 
@@ -11,6 +11,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :recipes
   map.root :controller => 'store'
 
+  map.resources :groups do |group|
+    group.resources :types
+  end
 
   map.resources :users do |user|
     #user.resources :products
@@ -19,8 +22,9 @@ ActionController::Routing::Routes.draw do |map|
     
   end
 
-
   map.resources :products, :member=> { :cart=> :get }
+  map.resources :users, :member=>{:shop => :get}
+  map.resources :types
 
 
   # map.resources :store, :collection => {:search => :post}

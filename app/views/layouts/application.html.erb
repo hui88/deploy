@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title><%= h(yield(:title) || "Untitled") %></title>
+    <title><%= h(yield(:title) || "校园交易平台") %></title>
     <%#= stylesheet_link_tag 'application' , 'depot'%>
     <%= stylesheet_link_tag 'depots'%>
     
@@ -12,7 +12,7 @@
 
   <body>
     <div id="head">
-      <h1 title="西子街"><a href="index.php"><img src="data/files/mall/settings/site_logo.gif" alt="西子街"></a></h1>
+      <h1 title="校园交易平台"><a href="/store">校园交易平台</a></h1>
       <div class="menu">
           <% if user_signed_in? %>
             您好！<%= current_user.name%>
@@ -53,13 +53,17 @@
             <input type="hidden" value="search" name="app">
             <input type="submit" class="btn" value="搜索" name="commit">
         </form>
-        <p><a href="index.php?app=category">商品分类</a><br><a href="index.php?app=category&amp;act=store">店铺分类</a></p>
+        <p><%= link_to "商品分类",:controller => :store,:action => :all_product%><br>
+           <%= link_to "全部商店",:controller => :store,:action => :all_shop%>
+        </p>
     </div>
     <div class="nav">
         <div class="nav1"></div>
         <div class="nav2"></div>
         <a class="buy" href="/store/cart">购物车 <strong id="cart_goods_kinds"></strong></a>
-        <a class="buyline" href="index.php?app=buyer_order">我的订单</a>
+        <% unless current_user.nil? %>
+          <a class="buyline" href="/users/<%=current_user.id%>/orders">我的订单</a>
+        <% end %>
     </div>
     </div>
 

@@ -40,39 +40,42 @@
                     </li>
                 </ul>
  
-                <% form_for :order, :url => { :action => :save_order } do |form| %>
-                  <fieldset>
                     <h4 class="add_title"><b class="ico">选择付款方式</b></h4>
+                    <div class="depot-form">
+                    <%= error_messages_for 'order' %>
+                    
+                    <% form_for :order, :url => { :action => :save_order } do |form| %>
+                    <% end %>
+                  </div>
+
+
+                    <% form_for :order, :url => { :action => :save_order } do |form| %>          
                     <div class="fashion_list">
                       <ul shipping_id="815" class="receive_add">
-                        <li>     
-                          <%=form.select :pay_type,Order::PAYMENT_TYPES,:prompt => "请选择一种付款方式"%>
-                        </li>
+                        <p><%=form.select :pay_type,Order::PAYMENT_TYPES,:prompt => "选择支付方式"%>
+                        </p>
                       </ul>
                     </div>               
                     <h4 class="add_title"><b class="ico">给卖家的附言</b></h4>
                     <div class="message">
                       <textarea name="order[message]"  id="postscript"></textarea>
                     </div>   
-                    <td>
+                    <div>
                       <%= form.hidden_field :user_id, :value => current_user.id %>
-                    </td>
-                    <td>
+                    </div>
+                    <div>
                       <%= form.hidden_field :total_price, :value => @cart.total_price %>
-                    </td>
-                    <%= submit_tag "Place Order" , :class => "submit" %>
-                   </fieldset>
-                <% end %>
+                    </div>
                     <div class="make_sure">
                       <p>订单总价:&nbsp;<strong id="order_amount" class="fontsize3">￥<%= @cart.total_price%></strong></p>
                       <p>
                         <input class="btn" type="submit" name= "commit" value="下单完成" >                        
                         <a class="back" href="/store/cart">返回购物车</a>
                       </p>
-                    </div> 
-
-              
-                </div>            </div>
+                    </div>              
+                    <%end%>   
+                </div>            
+             </div>
             <div class="sidelist">
                 <h4 class="add_title"><b class="ico">已选商品</b></h4>
                 <dl class="article">
@@ -104,36 +107,6 @@
   <p>
     <a href="/store">首页</a>
   </p>
-</div>
-
-
-<div class="depot-form">
-  <%= error_messages_for 'order' %>
-  
-  <% form_for :order, :url => { :action => :save_order } do |form| %>
-    <fieldset>
-      <div>
-        <%= form.label :pay_type, "Pay with:" %>
-        <%=
-        form.select :pay_type,
-          Order::PAYMENT_TYPES,
-          :prompt => "Select a payment method"
-      %>
-      </div>
-      <div>
-        <%= form.label :message , "Message:" %>
-        <%= form.text_area :message, :rows => 3, :cols => 40 %>
-      </div>
-      <td>
-        <%= form.hidden_field :user_id, :value => current_user.id %>
-      </td>
-      <td>
-        <%= form.hidden_field :total_price, :value => @cart.total_price %>
-      </td>
-      
-      <%= submit_tag "Place Order" , :class => "submit" %>
-    </fieldset>
-  <% end %>
 </div>
 
  

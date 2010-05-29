@@ -1,4 +1,14 @@
 <%= stylesheet_link_tag 'shop'%>
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+                <a href="/store/all_shop">全部商店</a>&gt;
+                <a href="<%= shop_user_path(@user.id)%>"> <%= @user.title%></a>&gt;
+                <%= @product.title%>
+                        </div>
+
 <div id="content">
   <div id="left">
     <div class="user">
@@ -8,13 +18,13 @@
 
     <div class="user_data">
       <p>
-        <span>店主: </span><%= @user.name %> <a href="index.php?app=message&amp;act=send&amp;to_id=746078" target="_blank"><img alt="发站内信" src="http://buy.xizi.com/themes/store/default/styles/style4/images/web_mail.gif"></a>
+        <span>店主: </span><%= @user.name %>
       </p>
       <p>商品数量: <%= @user.products.size %></p>
-      <p>创店时间: <%= @user.created_at %></p>
       <p>详细地址: <%= @user.address %></p>
       <p>联系电话: <%= @user.phone %></p>
       <p>QQ: <%= @user.QQ %></p>
+      <p>创店时间: <%= @user.created_at %></p>
    </div>
 
     <div class="clear"></div>
@@ -28,8 +38,7 @@
     <div class="wrap">
     <div class="wrap_child">
     <ul class="submenu">
-    <li><a href="index.php?app=store&amp;id=746078&amp;act=search" class="none_ico">全部商品</a></li>
-    <li><a href="index.php?app=store&amp;id=746078&amp;act=search&amp;cate_id=12654" class="none_ico">三星</a></li>
+    <li><a href="/users/<%= @user.id%>/shop">全部商品</a></li>
     </ul>
     </div>
     </div>
@@ -43,7 +52,7 @@
     <div class="ware_pic">
       <div class="big_pic">
         <a href="javascript:;"><span class="jqzoom">
-          <img width="300" height="300" src="<%= @product.image.url(:big)%>" alt="">
+          <img width="300" height="300"  src="<%= @product.image.url%>" alt="">
           </span>
         </a>
       </div>
@@ -116,10 +125,10 @@
           <% else %>
             <% @product.order_items.each do |item| %>
               <tr>
-                <td colspan="6"><%= item.order.user.name %></td>
-                <td colspan="6"><%= item.product.price %></td>
-                <td colspan="6"><%= item.quantity %></td>
-                <td colspan="6"><%= item.created_at %></td>
+                <td ><%= item.order.user.name %></td>
+                <td ><%= item.product.price %></td>
+                <td ><%= item.quantity %></td>
+                <td ><%= item.created_at %></td>
               </tr>
             <% end %>
           <% end %>

@@ -1,7 +1,17 @@
 class StoreController < ApplicationController
-  before_filter :authenticate_user!,:except => [:show,:index]
+  before_filter :authenticate_user!,:except => [:show,:index,:search,:group,:type,:all_product,:all_shop]
   def index
     @products= Product.all
+    @group = Group.first
+    @types = @group.types
+    @type_ids = @types.collect &:id
+    @products = Product.all(:conditions => ["type_id in (?)",@type_ids])
+
+    @group1 = Group.find(2)
+    @types1 = @group1.types
+    @type_ids1 = @types1.collect &:id
+    @products1 = Product.all(:conditions => ["type_id in (?)",@type_ids1])
+    
    # session[:cart]=nil
   end
 
@@ -40,7 +50,6 @@ class StoreController < ApplicationController
 
   def cart
     @cart = find_cart
-    
   end
 
   def empty_cart
@@ -75,17 +84,19 @@ class StoreController < ApplicationController
   
   def search
     @products=Product.find(:all,:conditions=>["title like ?","%#{params[:product][:title]}%"])
-    
-    render :action => :index
+ 
+    #render :action => :search
   end
 
 
   def group
     @group = Group.find(params[:group_id])
-    @products = Product.all
+    @types = @group.types
+    @type_ids = @types.collect &:id
+    @products = Product.all(:conditions => ["type_id in (?)",@type_ids])
     @products = @products.paginate(
       :page => params[:page],
-      :per_page => 2
+      :per_page => 8 
     )
   end
 
@@ -94,9 +105,22 @@ class StoreController < ApplicationController
     @products = @type.products
     @products = @products.paginate(
       :page => params[:page],
-      :per_page => 2
+      :per_page => 8
     )
   end
+
+  def all_product
+    @products=Product.all  
+    @products = @products.paginate(
+      :page => params[:page],
+      :per_page => 8
+    )
+  end
+
+  def all_shop
+    @users=User.all
+
+  end 
 
   private
 

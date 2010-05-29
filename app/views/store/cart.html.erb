@@ -10,40 +10,29 @@
     <div title="完成订单信息并下单" class="pos_x2 bg_b2"></div>
     <div title="下单完成并支付" class="pos_x3 bg_c2"></div>
 </div>
-<% if session[:cart]==nil%>
-<div class="flow_chart">
-    <div title="选购商品" class="pos_x1 bg_a1"></div>
-    <div title="完成订单信息并下单" class="pos_x2 bg_b2"></div>
-    <div title="下单完成并支付" class="pos_x3 bg_c2"></div>
-</div>
+<% if session[:cart].nil? || session[:cart].items.empty? %>
 <div class="content">
     <div class="module_common">
         <div class="step_main">
             <div class="null_shopping">
                 <h4>您的购物车是空的，您可以</h4>
                 <p>
-                    <a href="index.php">选购商品&gt;&gt;</a>
-                    <a href="index.php?app=buyer_order">查看订单&gt;&gt;</a>
+                    <a href="/store">选购商品&gt;&gt;</a>
+                    <a href="/users/<%= current_user.id%>/orders">查看订单&gt;&gt;</a>
                 </p>
             </div>
-
-            
             <div class="clear"></div>
-
         </div>
     </div>
-
 </div>
 <%else%>
 <div class="content">
-
     <div class="module_common">
-
         <div class="buy">
             <h3><b class="ico">您购物车中的商品</b></h3>
                     <div class="con">
                 <h4>店铺:
-                  <a href="index.php?app=store&amp;id=113602">BABY 巧妙屋</a></h4>
+                  <a href="/users/<%= @cart.items[0].product.user_id%>/shop"><%= User.find(@cart.items[0].product.user_id).title%></a></h4>
                 <div class="buytable">
                     <table>
                         <tbody><tr>
@@ -91,7 +80,7 @@
                         <p>商品总价:&nbsp;&nbsp;<strong id="cart113602_amount" class="fontsize1">￥<%= @cart.total_price%></strong></p>
                         <p>
                             <a class="btn" href="/store/checkout">填写并确认订单</a>
-                            <a class="back" href="">继续购物</a>
+                            <a class="back" href="/users/<%= @cart.items[0].product.user_id%>/products/<%= @cart.items[0].product.id%>">继续购物</a>
                         </p>
                     </div>
                 </div>
@@ -106,30 +95,3 @@
   </p>
 </div>
 
-
-
-<h1>Your Pragmatic Cart</h1>
-<table >
-    <tr>
-      <td>Title </td>
-      <td>quantity</td>
-      <td>price</td>
-    </tr>
-    <% for item in @cart.items %>
-      <tr>
-        <td><%= item.product.title%> &times;</td>
-        <td><%= item.quantity%></td>
-        <td><%= item.price%></td>
-        <td><%= link_to "add",:action => :add_to_cart,:id => item.product.id%><td>
-        <td><%= link_to "minus",:action =>:minus_from_cart,:id =>item.product.id%></td>
-        <td><%= link_to "delete",:action =>:delete_from_cart,:id=>item.product.id%></td>
-      </tr>
-    <% end %>  
-    <td>Total Price:</td> <td ><%= @cart.total_price%></td>
-</table>
-<%= button_to 'Checkout',:action => 'checkout'%>
-<%= button_to 'Empty Cart',:action => :empty_cart%>
-<%= button_to 'Back to Shopping',:action => :index%>
-
-
- 

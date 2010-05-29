@@ -1,3 +1,11 @@
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+            <a href="/store/all_product">全部分类</a> &gt;
+            <%= @group.name%>
+    </div>
 <div class="content">
   <div class="left">
     <div class="module_sidebar">
@@ -28,7 +36,7 @@
               <h3>
                 <span class="text_link">
                   <span class="depict">
-                    <a target="_blank" href="index.php?app=goods&amp;id=18725"><%= product.title %></a>
+                    <a target="_blank" href="/users/<%= product.user_id%>/products/<%= product.id%>"><%= product.title %></a>
                   </span>
                   <span class="info">
                     <span>店铺名称: <%= product.user.name %></span>

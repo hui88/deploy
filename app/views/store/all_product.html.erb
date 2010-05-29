@@ -1,0 +1,59 @@
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+            全部分类
+    </div>
+<div class="content">
+  <div class="left">
+    <div class="module_sidebar">
+      <h2><b>商品分类</b></h2>
+      <div class="wrap">
+        <div class="wrap_child">
+          <div class="side_textlist">
+            <ul ectype="ul_category">
+              <% Group.all.each do  |group|  %>
+                <li><%= link_to group.name, "/store/group?group_id=#{group.id}" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="shop_con_list">
+       <div ectype="current_display_mode" class="squares">
+          <ul class="list_pic">
+            <% @products.each do |product| %>
+            <li>
+              <p>
+                <%= link_to image_tag(product.image.url), user_product_path(product.user_id,product) %>
+              </p>
+              <h3>
+                <span class="text_link">
+                  <span class="depict">
+                    <a target="_blank" href="/users/<%= product.user_id%>/products/<%=product.id%>"><%= product.title %></a>
+                  </span>
+                  <span class="info">
+                    <span>店铺名称: <%= product.user.name %></span>
+                    <span class="fontColor5">认证商铺</span>
+                  </span>
+                </span>
+                <span class="price">￥<%= product.price %></span>
+                <b>已售: 0 件 | <a target="_blank" href="">0 评论</a></b>
+              </h3>
+            </li>
+            <% end %>
+            <div class="clear"></div>
+          </ul>
+        </div>
+      </div>
+      <div class="shop_list_page">
+        <%= will_paginate @products %>
+      </div>
+    </div>
+
+</div>

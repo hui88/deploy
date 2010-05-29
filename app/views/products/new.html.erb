@@ -1,6 +1,14 @@
-<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<%= javascript_include_tag "nicEdit-latest.js" %>
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 <%= stylesheet_link_tag 'user'%>
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+            <a href="/users/<%=current_user.id %>">个人中心</a> &gt;
+                商品管理        </div>
+
 <div class="content">
   <div class="totline"></div>
   <div class="botline"></div>
@@ -21,7 +29,7 @@
 <div class="assort">
 <p class="txt">商品分类：</p>
 <p id="gcategory" class="select">
-<%= f.select :type_id, Type::TYPES, :prompt => "Select one" %>
+<%= f.select :type_id, Type::TYPES, :prompt => "请选择" %>
 </p>
 </div>
 
@@ -83,4 +91,9 @@
     </div>
     <div class="clear"></div>
 </div>
-<%= link_to 'Back', user_products_path(@user_id)%>
+<div style="color: rgb(102, 102, 102);" id="footer">
+  <p>
+    <a href="/store">首页</a>
+  </p>
+</div>
+

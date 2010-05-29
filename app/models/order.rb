@@ -1,12 +1,14 @@
 class Order < ActiveRecord::Base
   belongs_to :user
-  has_many :line_items
+  has_many :line_items, :dependent => :delete_all
+  
+  validates_presence_of :pay_type
   
   PAYMENT_TYPES = [
     # Displayed stored in db
-    [ "Check" , "check" ],
-    [ "Credit card" , "cc" ],
-    [ "Purchase order" , "po" ]
+    [ "货到付款" , "货到付款" ],
+    [ "网银" , "网银" ],
+    [ "支付宝" , "支付宝" ]
   ]
 
   def add_line_items_from_cart(cart)

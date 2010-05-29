@@ -1,11 +1,11 @@
 require "paperclip"
 class Product < ActiveRecord::Base
-  has_many :line_items
+  has_many :line_items,:dependent => :delete_all
   belongs_to :user
   belongs_to :types
   # validation stuff...
 
-  has_attached_file :image, :styles => { :big => "400x400>", :small => "151x179>" }
+  has_attached_file :image, :styles => { :big => "300x300>", :small => "151x179>" }
 
 
 

@@ -1,3 +1,13 @@
+<div class="keyword">
+    <div class="keyword1"></div>
+    <div class="keyword2"></div>
+    当前位置:
+            <a href="/store">首页</a> &gt;
+            <a href="/store/all_product">全部分类</a> &gt;
+            <a href="/store/group?group_id=<%= @type.group_id%>"><%= Group.find(@type.group_id).name%></a> &gt;
+            <%= @type.name%>
+     </div>
+
 <div class="content">
   <div class="left">
     <div class="module_sidebar">
